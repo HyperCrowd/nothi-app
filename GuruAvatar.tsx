@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Paper, Button, Avatar } from '@mui/material';
+import { Paper } from '@mui/material';
 
 export interface IGuruAvatar {
   name: string;
@@ -12,14 +12,16 @@ interface Props {
 }
 
 export default function GuruAvatar({ item }: Props) {
+  const style = {
+    backgroundImage: `url(${item.image})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  };
+
   return (
-    <Paper className=" guruAvatar main-bkg">
-      <Avatar
-        alt={item.name + ' - ' + item.description}
-        src={item.image}
-        sx={{ width: 256, height: 256 }}
-        variant="square"
-      />
+    <Paper className="guruAvatar main-bkg">
+      <div className="guruAvatarImage" style={style} />
     </Paper>
   );
 }

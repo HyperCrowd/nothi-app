@@ -14,8 +14,17 @@ span {
   background-color: #355070 !important;
 }
 
-img {
-  -moz-user-select: none;
+html {
+  -webkit-touch-callout: none;
   -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+}
+
+.guruAvatarImage {
+  width: 256px;
+  height: 256px;
+  border-radius: 10px;
 }
