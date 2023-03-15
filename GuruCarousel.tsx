@@ -3,22 +3,11 @@ import type { IGuruAvatar } from './GuruAvatar';
 import GuruAvatar from './GuruAvatar';
 import Carousel from 'react-material-ui-carousel';
 
-const items: IGuruAvatar[] = [
-  {
-    name: 'Random Name #1',
-    description: 'Probably the most random thing you have ever seen!',
-  },
-  {
-    name: 'Random Name #2',
-    description: 'Hello World!',
-  },
-  {
-    name: 'Random Name #3',
-    description: 'Bye World!',
-  },
-];
+interface Props {
+  items: IGuruAvatar[]
+}
 
-export default function GuruCarousel() {
+export default function GuruCarousel({ items }: Props) {
   return (
     <Carousel
       swipe={true}
@@ -31,7 +20,7 @@ export default function GuruCarousel() {
       duration={400}
     >
       {items.map((item, i) => (
-        <GuruAvatar key={i} item />
+        <GuruAvatar key={i} item={item} />
       ))}
     </Carousel>
   );
