@@ -1,0 +1,15 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  font-family: Lato;
+  color: #f9f6ee;
+}
+
+.main-bkg {
+  background-color: #355070;
+}
