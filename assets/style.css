@@ -13,3 +13,9 @@ span {
 .main-bkg {
   background-color: #355070 !important;
 }
+
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
