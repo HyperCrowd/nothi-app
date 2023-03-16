@@ -1,36 +1,38 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import type { IGuruAvatar } from './GuruAvatar';
 import GuruCarousel from './GuruCarousel';
 import DreamButton from './DreamButton';
 
-const items: IGuruAvatar[] = [
+const avatars: IGuruAvatar[] = [
   {
     name: 'Cat Guru',
     image:
-      'https://stackblitz.com/files/nothi-app/github/HyperCrowd/nothi-app/main/cat-guru.png',
+      'https://raw.githubusercontent.com/HyperCrowd/nothi-app/main/assets/cat-guru.png',
     description: 'Meow',
   },
   {
     name: 'Omni Guru',
     image:
-      'https://stackblitz.com/files/nothi-app/github/HyperCrowd/nothi-app/main/omni-guru.png',
+      'https://raw.githubusercontent.com/HyperCrowd/nothi-app/main/assets/omni-guru.png',
     description: 'The All Buddha',
   },
   {
     name: 'Yoda Guru',
     image:
-      'https://stackblitz.com/files/nothi-app/github/HyperCrowd/nothi-app/main/yoda-guru.png',
+      'https://raw.githubusercontent.com/HyperCrowd/nothi-app/main/assets/yoda-guru.png',
     description: 'Force it',
   },
 ];
 
 export default function App() {
+  const [avatarIndex, setAvatarIndex] = useState(0);
+
   return (
     <div>
       <h1>Hello StackBlitz!</h1>
       <p>Start editing to see some magic happen :)</p>
-      <GuruCarousel items={items} />
-      <DreamButton />
+      <GuruCarousel avatars={avatars} onChange={setAvatarIndex} />
+      <DreamButton avatar={avatars[avatarIndex]} />
     </div>
   );
 }

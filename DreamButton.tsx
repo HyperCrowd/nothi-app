@@ -1,5 +1,10 @@
-import * as React from 'react';
+import React from 'react';
+import type { IGuruAvatar } from './GuruAvatar';
 
-export default function DreamButton() {
+interface Props {
+  avatar: IGuruAvatar;
+}
+
+export default function DreamButton({ avatar }: Props) {
   return <div></div>;
 }

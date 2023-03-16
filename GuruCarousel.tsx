@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import type { IGuruAvatar } from './GuruAvatar';
 import GuruAvatar from './GuruAvatar';
 import Carousel from 'react-material-ui-carousel';
 
 interface Props {
-  items: IGuruAvatar[]
+  avatars: IGuruAvatar[];
+  onChange: (index: number) => void;
 }
 
-export default function GuruCarousel({ items }: Props) {
+export default function GuruCarousel({ avatars, onChange }: Props) {
   return (
     <Carousel
       swipe={true}
@@ -18,9 +19,10 @@ export default function GuruCarousel({ items }: Props) {
       fullHeightHover={true}
       animation="slide"
       duration={400}
+      onChange={onChange}
     >
-      {items.map((item, i) => (
-        <GuruAvatar key={i} item={item} />
+      {avatars.map((avatar, i) => (
+        <GuruAvatar key={i} avatar={avatar} />
       ))}
     </Carousel>
   );

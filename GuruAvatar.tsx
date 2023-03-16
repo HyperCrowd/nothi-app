@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Paper } from '@mui/material';
+import React from 'react';
 
 export interface IGuruAvatar {
   name: string;
@@ -8,20 +7,20 @@ export interface IGuruAvatar {
 }
 
 interface Props {
-  item: IGuruAvatar;
+  avatar: IGuruAvatar;
 }
 
-export default function GuruAvatar({ item }: Props) {
+export default function GuruAvatar({ avatar }: Props) {
   const style = {
-    backgroundImage: `url(${item.image})`,
+    backgroundImage: `url(${avatar.image})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   };
 
   return (
-    <Paper className="guruAvatar main-bkg">
+    <div className="guruAvatar main-bkg">
       <div className="guruAvatarImage" style={style} />
-    </Paper>
+    </div>
   );
 }

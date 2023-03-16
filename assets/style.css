@@ -23,6 +23,11 @@ html {
   user-select: none;
 }
 
+.guruAvatar {
+  text-align: -webkit-center;
+  width: '80%';
+}
+
 .guruAvatarImage {
   width: 256px;
   height: 256px;
