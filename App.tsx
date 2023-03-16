@@ -32,10 +32,12 @@ export default function App() {
 
   return (
     <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some magic happen :)</p>
       <GuruCarousel avatars={avatars} onChange={setAvatarIndex} />
       <DreamButton avatar={avatars[avatarIndex]} />
+      <div className="dream-instructions">
+        <p>Press to speak to the</p>
+        <p>{avatars[avatarIndex].name}</p>
+      </div>
     </div>
   );
 }

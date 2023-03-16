@@ -6,5 +6,16 @@ interface Props {
 }
 
 export default function DreamButton({ avatar }: Props) {
-  return <div></div>;
+  const style = {
+    backgroundImage: `url(https://raw.githubusercontent.com/HyperCrowd/nothi-app/main/assets/dream_button_raised.png)`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  };
+
+  return (
+    <div className="guruAvatar main-bkg">
+      <div className="guruAvatarImage" style={style} />
+    </div>
+  );
 }

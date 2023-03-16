@@ -33,3 +33,10 @@ html {
   height: 256px;
   border-radius: 10px;
 }
+
+.dream-instructions {
+  font-size: x-large;
+  line-height: 1vh;
+  text-align: center;
+  font-family: 'Roboto';
+}
