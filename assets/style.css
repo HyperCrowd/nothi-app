@@ -28,6 +28,12 @@ html {
   width: '80%';
 }
 
+.shadow {
+  -webkit-box-shadow: 10px 10px 19px 1px rgba(0, 0, 0, 0.92);
+  -moz-box-shadow: 10px 10px 19px 1px rgba(0, 0, 0, 0.92);
+  box-shadow: 10px 10px 19px 1px rgba(0, 0, 0, 0.92);
+}
+
 .guruAvatarImage {
   width: 256px;
   height: 256px;
@@ -39,4 +45,13 @@ html {
   line-height: 1vh;
   text-align: center;
   font-family: 'Roboto';
+}
+
+.dreamButton {
+  width: 256px;
+  height: 256px;
+  -webkit-transition: all 0.07s linear;
+  -moz-transition: all 0.07s linear;
+  -o-transition: all 0.07s linear;
+  transition: all 0.07s linear;
 }

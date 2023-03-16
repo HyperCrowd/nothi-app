@@ -21,7 +21,7 @@ export default function GuruAvatar({ avatar }: Props) {
 
   return (
     <div className="guruAvatar main-bkg">
-      <div className="guruAvatarImage" style={style} />
+      <div className="guruAvatarImage shadow" style={style} />
     </div>
   );
 }
