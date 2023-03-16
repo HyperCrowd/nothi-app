@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface IGuruAvatar {
+  id: string;
   name: string;
   image: string;
   description: string;
