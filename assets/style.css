@@ -26,6 +26,8 @@ html {
 .guruAvatar {
   text-align: -webkit-center;
   width: '80%';
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 .shadow {
@@ -50,8 +52,9 @@ html {
 .dreamButton {
   width: 256px;
   height: 256px;
-  -webkit-transition: all 0.07s linear;
-  -moz-transition: all 0.07s linear;
-  -o-transition: all 0.07s linear;
-  transition: all 0.07s linear;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  border-radius: 100%;
 }
