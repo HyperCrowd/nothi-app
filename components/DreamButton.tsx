@@ -22,7 +22,7 @@ export default function DreamButton({ avatar }: Props) {
       <div
         className="dreamButton shadow"
         style={style}
-        onClick={() => {
+        onMouseDown={() => {
           setIsRecording(!isRecording);
         }}
       />
