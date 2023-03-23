@@ -29,7 +29,7 @@ export default function MainAppBar({ showBack, onBackClick }: Props) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" className="appbar">
         <Toolbar>{backIcon}</Toolbar>
       </AppBar>
     </Box>

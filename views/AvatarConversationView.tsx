@@ -48,19 +48,35 @@ export default function AvatarConversationView({
       <Stack spacing={2}>
         {conversation.messages.map((message, i) => {
           const fromAvatar = getAvatar(message.from, avatar);
-          const toAvatar = getAvatar(message.from, avatar);
 
           const item =
             message.from === 'user' ? (
-              <span>
-                {fromAvatar}
+              <span
+                className="message"
+                style={{
+                  float: 'right',
+                }}
+              >
                 {message.content}
               </span>
             ) : (
-              <span>
-                {message.content}
-                {toAvatar}
-              </span>
+              <div>
+                <span
+                  style={{
+                    float: 'left',
+                  }}
+                >
+                  {fromAvatar}
+                </span>
+                <span
+                  className="message"
+                  style={{
+                    float: 'left',
+                  }}
+                >
+                  {message.content}
+                </span>
+              </div>
             );
 
           return (

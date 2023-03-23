@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import GuruAvatar from '../components/GuruAvatar';
 
 interface Props {
   avatarIndex: number;
@@ -26,6 +27,7 @@ export default function AvatarConversationsView({
 }: Props) {
   return (
     <Box sx={{ width: '100%' }}>
+      <GuruAvatar avatar={avatar} canClick={false} showBadge={false} />
       <Stack spacing={2}>
         {avatar.conversations.map((conversation, i) => (
           <Item

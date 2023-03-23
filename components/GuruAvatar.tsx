@@ -19,23 +19,22 @@ export default function GuruAvatar({
   selectAvatarClick,
   width = 256,
   height = 256,
-  text,
+  text = '',
   showBadge = true,
   canClick = true,
 }: Props) {
-  let style = {
-    width: width + 'px',
-    height: height + 'px',
-    backgroundImage: undefined,
-    backgroundPosition: undefined,
-    backgroundSize: undefined,
-    backgroundRepeat: undefined,
-  };
-
   const size = {
     width: width + 'px',
     height: height + 'px',
     lineHeight: height + 'px',
+  };
+
+  let style = {
+    ...size,
+    backgroundImage: undefined,
+    backgroundPosition: undefined,
+    backgroundSize: undefined,
+    backgroundRepeat: undefined,
   };
 
   if (avatar !== undefined) {
@@ -54,45 +53,29 @@ export default function GuruAvatar({
     }
   };
 
-  const avatarImage =
-    text === undefined ? (
-      <div
-        className="guruAvatarImage shadow"
-        style={style}
-        onClick={onAvatarClick}
-      />
-    ) : (
-      <div
-        className="guruAvatarImage shadow"
-        style={size}
-        onClick={onAvatarClick}
-      >
-        {text}
-      </div>
-    );
+  const avatarImage = (
+    <div
+      className="guruAvatarImage shadow"
+      style={style}
+      onClick={onAvatarClick}
+    >
+      {text}
+    </div>
+  );
 
-  const badge =
-    showBadge === true ? (
+  console.log(size);
+  const result = (
+    <div className={text === '' ? 'guruAvatar' : 'guruAvatar main-bkg'}>
       <Badge
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }}
         color="secondary"
-        badgeContent={avatar.conversations.length}
+        badgeContent={showBadge === true ? avatar.conversations.length : 0}
       >
         {avatarImage}
       </Badge>
-    ) : (
-      <></>
-    );
-
-  const result = (
-    <div
-      style={avatar === undefined ? size : {}}
-      className={avatar === undefined ? 'guruAvatar' : 'guruAvatar main-bkg'}
-    >
-      {badge}
     </div>
   );
   return result;

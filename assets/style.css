@@ -65,3 +65,15 @@ html {
   transition: all 0.25s linear;
   border-radius: 100%;
 }
+
+.message {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.appbar {
+  background-color: #355070;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
