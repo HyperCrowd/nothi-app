@@ -27,7 +27,12 @@ export default function GuruCarousel({
       onChange={onChange}
     >
       {avatars.map((avatar, i) => (
-        <GuruAvatar key={i} avatar={avatar} onClick={onAvatarClick} />
+        <GuruAvatar
+          key={i}
+          index={i}
+          avatar={avatar}
+          selectAvatarClick={onAvatarClick}
+        />
       ))}
     </Carousel>
   );
