@@ -1,5 +1,11 @@
 import type { IGuruAvatar } from '../components/GuruAvatar';
 
+export const State = {
+  avatarIndex: 0,
+  avatarSelected: -1,
+  breadcrumb: ['avatarSelectionView'],
+};
+
 export const avatars: IGuruAvatar[] = [
   {
     id: 'cat-guru-01',

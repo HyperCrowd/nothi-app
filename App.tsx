@@ -1,47 +1,42 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import AvatarSelectionView from './views/AvatarSelectionView';
+import AvatarConversationsView from './views/AvatarConversationsView';
 import { Slide } from '@mui/material';
-
-const appPositionStack: string[] = ['avatarSelectionView'];
+import { State } from './state/App';
 
 export default function App() {
-  const [avatarIndex, setAvatarIndex] = useState<number>(0);
-  const [avatarSelected, setAvatarSelected] = useState<number>(null);
-  const appRef = useRef(null);
+  const [state, setState] = useState(State);
 
-  const viewState = appPositionStack[appPositionStack.length - 1];
+  const viewState = state.breadcrumb[state.breadcrumb.length - 1];
   let currentView: JSX.Element;
-
-  if (appRef === undefined) {
-    return <div></div>;
-  }
 
   switch (viewState) {
     case 'avatarSelectionView':
       currentView = (
-        <Slide direction="up" in={true} container={appRef.current}>
-          <AvatarSelectionView
-            setAvatarIndex={setAvatarIndex}
-            setAvatarSelected={(index: number) => {
-              appPositionStack.push('avatarConversationsView');
-              setAvatarSelected(index);
-            }}
-            avatarIndex={avatarIndex}
-          />
-        </Slide>
+        <AvatarSelectionView
+          setAvatarIndex={(index: number) => {
+            state.avatarIndex = index;
+            setState(state);
+          }}
+          setAvatarSelected={(index: number) => {
+            state.breadcrumb.push('avatarConversationsView');
+            state.avatarSelected = index;
+            setState(state);
+          }}
+          avatarIndex={state.avatarIndex}
+        />
       );
       break;
     case 'avatarConversationsView':
-      currentView = (
-        <Slide direction="up" in={false} container={appRef.current}>
-          <></>
-        </Slide>
-      );
+      currentView = <AvatarConversationsView />;
       break;
   }
 
-  console.log(appRef);
-  const app = <div ref={appRef}>{currentView}</div>;
-
-  return app;
+  return (
+    <div>
+      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+        <div>{currentView}</div>
+      </Slide>
+    </div>
+  );
 }
