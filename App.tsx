@@ -54,6 +54,7 @@ export default function App() {
     case 'avatarConversationView':
       currentView = (
         <AvatarConversationView
+          avatar={avatars[state.avatarIndex]}
           conversation={
             avatars[state.avatarIndex].conversations[state.conversationIndex]
           }

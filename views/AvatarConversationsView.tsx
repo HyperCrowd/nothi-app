@@ -28,7 +28,10 @@ export default function AvatarConversationsView({
     <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
         {avatar.conversations.map((conversation, i) => (
-          <Item onClick={() => onConversationClick(i)}>
+          <Item
+            key={`convo-${conversation.id}`}
+            onClick={() => onConversationClick(i)}
+          >
             {conversation.title}
           </Item>
         ))}

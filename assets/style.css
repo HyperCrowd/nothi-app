@@ -4,10 +4,14 @@ h3,
 h4,
 h5,
 h6,
-p,
-span {
+p {
   font-family: Lato;
   color: #f9f6ee;
+}
+
+.message {
+  color: #000000 !important;
+  background-color: #f9f6ee;
 }
 
 .main-bkg {
@@ -40,6 +44,9 @@ html {
   width: 256px;
   height: 256px;
   border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 256px;
 }
 
 .dream-instructions {
