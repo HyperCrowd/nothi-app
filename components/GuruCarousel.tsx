@@ -6,9 +6,14 @@ import Carousel from 'react-material-ui-carousel';
 interface Props {
   avatars: IGuruAvatar[];
   onChange: (index: number) => void;
+  onAvatarClick: (index: number) => void;
 }
 
-export default function GuruCarousel({ avatars, onChange }: Props) {
+export default function GuruCarousel({
+  avatars,
+  onChange,
+  onAvatarClick,
+}: Props) {
   return (
     <Carousel
       swipe={true}
@@ -22,7 +27,7 @@ export default function GuruCarousel({ avatars, onChange }: Props) {
       onChange={onChange}
     >
       {avatars.map((avatar, i) => (
-        <GuruAvatar key={i} avatar={avatar} />
+        <GuruAvatar key={i} avatar={avatar} onClick={onAvatarClick} />
       ))}
     </Carousel>
   );

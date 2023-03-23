@@ -6,13 +6,16 @@ export interface IGuruAvatar {
   name: string;
   image: string;
   description: string;
+  notifications: number;
+  focused: boolean;
 }
 
 interface Props {
   avatar: IGuruAvatar;
+  onClick: (index: number) => void;
 }
 
-export default function GuruAvatar({ avatar }: Props) {
+export default function GuruAvatar({ avatar, onClick }: Props) {
   const style = {
     backgroundImage: `url(${avatar.image})`,
     backgroundPosition: 'center',
@@ -28,7 +31,7 @@ export default function GuruAvatar({ avatar }: Props) {
           horizontal: 'right',
         }}
         color="secondary"
-        badgeContent={10}
+        badgeContent={avatar.notifications}
       >
         <div className="guruAvatarImage shadow" style={style} />
       </Badge>

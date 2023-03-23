@@ -4,11 +4,16 @@ import DreamButton from './components/DreamButton';
 import { avatars } from './state/App';
 
 export default function App() {
-  const [avatarIndex, setAvatarIndex] = useState(0);
+  const [avatarIndex, setAvatarIndex] = useState<number>(0);
+  const [avatarSelected, setAvatarSelected] = useState<number>(null);
 
   return (
     <div>
-      <GuruCarousel avatars={avatars} onChange={setAvatarIndex} />
+      <GuruCarousel
+        avatars={avatars}
+        onChange={setAvatarIndex}
+        onAvatarClick={setAvatarSelected}
+      />
       <DreamButton avatar={avatars[avatarIndex]} />
       <div className="dream-instructions">
         <p>Press to speak to the</p>
