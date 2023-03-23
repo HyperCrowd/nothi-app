@@ -5,6 +5,7 @@ export const State = {
   avatarSelected: -1,
   breadcrumb: ['avatarSelectionView'],
   conversationIndex: -1,
+  isRecording: false,
 };
 
 export const avatars: IGuruAvatar[] = [
