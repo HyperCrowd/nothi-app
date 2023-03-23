@@ -1,14 +1,12 @@
 import * as React from 'react';
-import type { IGuruAvatar } from '../types';
+import type { IConversation } from '../types';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 
 interface Props {
-  avatarIndex: number;
-  avatar: IGuruAvatar;
-  onConversationClick: (index: number) => void;
+  conversation: IConversation;
 }
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -19,18 +17,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function AvatarConversationsView({
-  avatarIndex,
-  avatar,
-  onConversationClick,
-}: Props) {
+export default function AvatarConversationView({ conversation }: Props) {
   return (
     <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
-        {avatar.conversations.map((conversation, i) => (
-          <Item onClick={() => onConversationClick(i)}>
-            {conversation.title}
-          </Item>
+        {conversation.messages.map((message, i) => (
+          <Item key={`convo-${conversation.id}-${i}`}>{message.content}</Item>
         ))}
       </Stack>
     </Box>
