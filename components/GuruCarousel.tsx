@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IGuruAvatar } from './GuruAvatar';
+import type { IGuruAvatar } from '../types';
 import GuruAvatar from './GuruAvatar';
 import Carousel from 'react-material-ui-carousel';
 

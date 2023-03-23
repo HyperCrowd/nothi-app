@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import AvatarSelectionView from './views/AvatarSelectionView';
 import AvatarConversationsView from './views/AvatarConversationsView';
 import AppBar from './components/AppBar';
@@ -9,7 +9,7 @@ export default function App() {
   const [state, setState] = useState(State);
 
   const viewState = state.breadcrumb[state.breadcrumb.length - 1];
-  console.log(state);
+
   let currentView: JSX.Element;
 
   switch (viewState) {
@@ -33,6 +33,7 @@ export default function App() {
         />
       );
       break;
+
     case 'avatarConversationsView':
       currentView = (
         <AvatarConversationsView

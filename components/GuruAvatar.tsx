@@ -1,14 +1,6 @@
 import React from 'react';
 import { Badge } from '@mui/material';
-
-export interface IGuruAvatar {
-  id: string;
-  name: string;
-  image: string;
-  description: string;
-  notifications: number;
-  focused: boolean;
-}
+import type { IGuruAvatar } from '../types';
 
 interface Props {
   index: number;
@@ -41,7 +33,7 @@ export default function GuruAvatar({
           horizontal: 'right',
         }}
         color="secondary"
-        badgeContent={avatar.notifications}
+        badgeContent={avatar.conversations.length}
       >
         <div
           className="guruAvatarImage shadow"

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { IGuruAvatar } from '../components/GuruAvatar';
+import type { IGuruAvatar } from '../types';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -18,13 +18,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function AvatarConversationsView({ avatarIndex, avatar }) {
+export default function AvatarConversationsView({
+  avatarIndex,
+  avatar,
+}: Props) {
   return (
     <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
+        {avatar.conversations.map((conversation, i) => (
+          <Item>{conversation.title}</Item>
+        ))}
       </Stack>
     </Box>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { IGuruAvatar } from './GuruAvatar';
+import type { IGuruAvatar } from '../types';
 
 interface Props {
   avatar: IGuruAvatar;
