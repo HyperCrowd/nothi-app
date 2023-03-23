@@ -1,4 +1,5 @@
 import React from 'react';
+import { Badge } from '@mui/material';
 
 export interface IGuruAvatar {
   id: string;
@@ -21,7 +22,16 @@ export default function GuruAvatar({ avatar }: Props) {
 
   return (
     <div className="guruAvatar main-bkg">
-      <div className="guruAvatarImage shadow" style={style} />
+      <Badge
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        color="secondary"
+        badgeContent={10}
+      >
+        <div className="guruAvatarImage shadow" style={style} />
+      </Badge>
     </div>
   );
 }
