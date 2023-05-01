@@ -8,8 +8,8 @@ interface Props {
   width?: number;
   height?: number;
   text?: string;
-  showBadge: boolean;
-  canClick: boolean;
+  showBadge?: boolean;
+  canClick?: boolean;
   selectAvatarClick?: (index: number) => void;
 }
 

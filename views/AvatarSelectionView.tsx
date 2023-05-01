@@ -13,7 +13,7 @@ export default function AvatarSelectionView({
   setAvatarIndex,
   setAvatarSelected,
   avatarIndex,
-}) {
+}: Props) {
   return (
     <div>
       <GuruCarousel

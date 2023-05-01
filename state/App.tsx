@@ -1,4 +1,8 @@
 import type { IGuruAvatar } from '../types';
+import React from 'react';
+
+export type StateType = typeof State;
+export type SetState = React.Dispatch<React.SetStateAction<StateType>>;
 
 export const State = {
   avatarIndex: 0,
