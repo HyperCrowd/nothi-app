@@ -185,7 +185,7 @@ export function navigateBack(state: StateType, setState: SetState) {
   state.breadcrumb.pop();
   setState({
     ...state,
-    conversationIndex: -1,
-    avatarSelected: -1,
+    //conversationIndex: -1,
+    //avatarSelected: -1,
   });
 }

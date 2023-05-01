@@ -5,12 +5,14 @@ import Carousel from 'react-material-ui-carousel';
 
 interface Props {
   avatars: IGuruAvatar[];
+  currentAvatarIndex: number
   onChange: (index: number) => void;
   onAvatarClick: (index: number) => void;
 }
 
 export default function GuruCarousel({
   avatars,
+  currentAvatarIndex,
   onChange,
   onAvatarClick,
 }: Props) {
@@ -19,6 +21,7 @@ export default function GuruCarousel({
       swipe={true}
       autoPlay={false}
       indicators={false}
+      index={currentAvatarIndex}
       cycleNavigation={true}
       navButtonsAlwaysInvisible={true}
       fullHeightHover={true}

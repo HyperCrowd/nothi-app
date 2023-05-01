@@ -20,6 +20,7 @@ export default function AvatarSelectionView({
         avatars={avatars}
         onChange={setAvatarIndex}
         onAvatarClick={setAvatarSelected}
+        currentAvatarIndex={avatarIndex}
       />
       <DreamButton avatar={avatars[avatarIndex]} />
       <div className="dream-instructions">
