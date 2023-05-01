@@ -5,59 +5,14 @@ import AvatarConversationsView from './views/AvatarConversationsView';
 import AvatarConversationView from './views/AvatarConversationView';
 import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
-import { State, avatars } from './state/App';
-
-/**
- *
- */
-function setAvatarIndex(state: StateType, setState: SetState, index: number) {
-  setState({
-    ...state,
-    avatarIndex: index,
-  });
-}
-
-/**
- *
- */
-function setAvatarSelected(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
-    avatarSelected: index,
-  });
-}
-
-/**
- *
- */
-function onConversationClick(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
-    conversationIndex: index,
-  });
-}
-
-/**
- *
- */
-function onBackClick(state: StateType, setState: SetState) {
-  state.breadcrumb.pop();
-  setState({
-    ...state,
-    conversationIndex: -1,
-    avatarSelected: -1,
-  });
-}
+import {
+  State,
+  avatars,
+  setAvatarIndex,
+  setAvatarSelected,
+  selectConversation,
+  navigateBack,
+} from './state/App';
 
 /**
  *
@@ -90,7 +45,7 @@ export default function App() {
           avatarIndex={state.avatarIndex}
           avatar={avatars[state.avatarIndex]}
           onConversationClick={(index: number) =>
-            onConversationClick(state, setState, index)
+            selectConversation(state, setState, index)
           }
         />
       );
@@ -112,7 +67,7 @@ export default function App() {
     <div>
       <AppBar
         showBack={state.breadcrumb.length > 1}
-        onBackClick={() => onBackClick(state, setState)}
+        onBackClick={() => navigateBack(state, setState)}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <div>{currentView}</div>

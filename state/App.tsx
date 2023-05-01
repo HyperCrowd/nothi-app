@@ -133,3 +133,55 @@ export const avatars: IGuruAvatar[] = [
     focused: false,
   },
 ];
+
+/**
+ *
+ */
+function setAvatarIndex(state: StateType, setState: SetState, index: number) {
+  setState({
+    ...state,
+    avatarIndex: index,
+  });
+}
+
+/**
+ *
+ */
+function setAvatarSelected(
+  state: StateType,
+  setState: SetState,
+  index: number
+) {
+  setState({
+    ...state,
+    breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
+    avatarSelected: index,
+  });
+}
+
+/**
+ *
+ */
+function selectConversation(
+  state: StateType,
+  setState: SetState,
+  index: number
+) {
+  setState({
+    ...state,
+    breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
+    conversationIndex: index,
+  });
+}
+
+/**
+ *
+ */
+function navigateBack(state: StateType, setState: SetState) {
+  state.breadcrumb.pop();
+  setState({
+    ...state,
+    conversationIndex: -1,
+    avatarSelected: -1,
+  });
+}
