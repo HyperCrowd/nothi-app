@@ -1,9 +1,6 @@
 import type { IGuruAvatar } from '../types';
 import React from 'react';
 
-export type StateType = typeof State;
-export type SetState = React.Dispatch<React.SetStateAction<StateType>>;
-
 export const State = {
   avatarIndex: 0,
   avatarSelected: -1,
@@ -11,6 +8,9 @@ export const State = {
   conversationIndex: -1,
   isRecording: false,
 };
+
+export type StateType = typeof State;
+export type SetState = React.Dispatch<React.SetStateAction<StateType>>;
 
 export const avatars: IGuruAvatar[] = [
   {
@@ -137,7 +137,11 @@ export const avatars: IGuruAvatar[] = [
 /**
  *
  */
-function setAvatarIndex(state: StateType, setState: SetState, index: number) {
+export function setAvatarIndex(
+  state: StateType,
+  setState: SetState,
+  index: number
+) {
   setState({
     ...state,
     avatarIndex: index,
@@ -147,7 +151,7 @@ function setAvatarIndex(state: StateType, setState: SetState, index: number) {
 /**
  *
  */
-function setAvatarSelected(
+export function setAvatarSelected(
   state: StateType,
   setState: SetState,
   index: number
@@ -162,7 +166,7 @@ function setAvatarSelected(
 /**
  *
  */
-function selectConversation(
+export function selectConversation(
   state: StateType,
   setState: SetState,
   index: number
@@ -177,7 +181,7 @@ function selectConversation(
 /**
  *
  */
-function navigateBack(state: StateType, setState: SetState) {
+export function navigateBack(state: StateType, setState: SetState) {
   state.breadcrumb.pop();
   setState({
     ...state,
