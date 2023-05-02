@@ -1,5 +1,5 @@
 import type { IGuruAvatar } from '../types';
-import React from 'react';
+import React, { createContext } from 'react';
 
 export const State = {
   avatarIndex: 0,
@@ -9,7 +9,10 @@ export const State = {
   isRecording: false,
 };
 
+export const Context = createContext(State);
+
 export type StateType = typeof State;
+export type ContextType = typeof Context;
 export type SetState = React.Dispatch<React.SetStateAction<StateType>>;
 
 export const avatars: IGuruAvatar[] = [
@@ -185,7 +188,5 @@ export function navigateBack(state: StateType, setState: SetState) {
   state.breadcrumb.pop();
   setState({
     ...state,
-    //conversationIndex: -1,
-    //avatarSelected: -1,
   });
 }

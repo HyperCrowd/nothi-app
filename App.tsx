@@ -1,8 +1,9 @@
 import type { StateType, SetState } from './state/App';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import AvatarSelectionView from './views/AvatarSelectionView';
 import AvatarConversationsView from './views/AvatarConversationsView';
 import AvatarConversationView from './views/AvatarConversationView';
+import { Context } from './state/App';
 import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
 import {
@@ -19,6 +20,7 @@ import {
  */
 export default function App() {
   const [state, setState] = useState(State);
+  const context = useContext(Context);
 
   const viewState = state.breadcrumb[state.breadcrumb.length - 1];
 
