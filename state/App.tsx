@@ -2,11 +2,13 @@ import type { IGuruAvatar } from '../types';
 import React, { createContext } from 'react';
 
 export const State = {
-  avatarIndex: 0,
-  avatarSelected: -1,
-  breadcrumb: ['avatarSelectionView'],
-  conversationIndex: -1,
-  isRecording: false,
+  guruCarousel: {
+    avatarIndex?: 0,
+    avatarSelected?: -1,
+    breadcrumb?: ['avatarSelectionView'],
+    conversationIndex?: -1,
+    isRecording?: false,
+  },
 };
 
 export const Context = createContext(State);

@@ -22,7 +22,8 @@ export default function App() {
   const [state, setState] = useState(State);
   const context = useContext(Context);
 
-  const viewState = state.breadcrumb[state.breadcrumb.length - 1];
+  const viewState =
+    state.guruCarousel.breadcrumb[state.guruCarousel.breadcrumb.length - 1];
 
   let currentView: JSX.Element;
 
@@ -36,7 +37,7 @@ export default function App() {
           setAvatarSelected={(index: number) =>
             setAvatarSelected(state, setState, index)
           }
-          avatarIndex={state.avatarIndex}
+          avatarIndex={state.guruCarousel.avatarIndex}
         />
       );
       break;
@@ -44,8 +45,8 @@ export default function App() {
     case 'avatarConversationsView':
       currentView = (
         <AvatarConversationsView
-          avatarIndex={state.avatarIndex}
-          avatar={avatars[state.avatarIndex]}
+          avatarIndex={state.guruCarousel.avatarIndex}
+          avatar={avatars[state.guruCarousel.avatarIndex]}
           onConversationClick={(index: number) =>
             selectConversation(state, setState, index)
           }
@@ -56,9 +57,11 @@ export default function App() {
     case 'avatarConversationView':
       currentView = (
         <AvatarConversationView
-          avatar={avatars[state.avatarIndex]}
+          avatar={avatars[state.guruCarousel.avatarIndex]}
           conversation={
-            avatars[state.avatarIndex].conversations[state.conversationIndex]
+            avatars[state.guruCarousel.avatarIndex].conversations[
+              state.guruCarousel.conversationIndex
+            ]
           }
         />
       );
@@ -68,7 +71,7 @@ export default function App() {
   return (
     <div>
       <AppBar
-        showBack={state.breadcrumb.length > 1}
+        showBack={state.guruCarousel.breadcrumb.length > 1}
         onBackClick={() => navigateBack(state, setState)}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>

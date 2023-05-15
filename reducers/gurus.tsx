@@ -1,4 +1,6 @@
-import type { StateType } from './state/App';
+import { State } from '../state/App';
+
+export type GuruCarouselState = typeof State.gurucarousel;
 
 export const GuruCarouselActions = {
   SET_AVATAR_INDEX: 'SET_AVATAR_INDEX',
@@ -7,7 +9,7 @@ export const GuruCarouselActions = {
   NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
-export default function reducer(state: StateType, action) {
+export default function reducer(state: GuruCarouselState, action) {
   switch (action.type) {
     /**
      *
