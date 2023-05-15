@@ -5,7 +5,7 @@ const actions = {
   NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
-export function reducer(state, action) {
+export default function reducer(state, action) {
   switch (action.type) {
     case actions.SET_AVATAR_INDEX:
       return { avatarIndex: state.avatarIndex };
