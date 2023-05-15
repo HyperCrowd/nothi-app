@@ -1,22 +1,24 @@
-const actions = {
+import type { StateType } from './state/App';
+
+export const GuruCarouselActions = {
   SET_AVATAR_INDEX: 'SET_AVATAR_INDEX',
   SET_AVATAR_SELECTED: 'SET_AVATAR_SELECTED',
   SELECT_CONVERSATION: 'SELECT_CONVERSATION',
   NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
-export default function reducer(state, action) {
+export default function reducer(state: StateType, action) {
   switch (action.type) {
     /**
      *
      */
-    case actions.SET_AVATAR_INDEX:
+    case GuruCarouselActions.SET_AVATAR_INDEX:
       return { avatarIndex: state.avatarIndex };
 
     /**
      *
      */
-    case actions.SET_AVATAR_SELECTED:
+    case GuruCarouselActions.SET_AVATAR_SELECTED:
       return {
         breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
         avatarSelected: state.avatarSelected,
@@ -25,7 +27,7 @@ export default function reducer(state, action) {
     /**
      *
      */
-    case actions.SELECT_CONVERSATION:
+    case GuruCarouselActions.SELECT_CONVERSATION:
       return {
         breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
         conversationIndex: state.conversationIndex,
@@ -34,7 +36,7 @@ export default function reducer(state, action) {
     /**
      *
      */
-    case actions.NAVIGATE_BACK:
+    case GuruCarouselActions.NAVIGATE_BACK:
       const breadcrumb = [...state.breadcrumb].pop();
       return {
         breadcrumb,

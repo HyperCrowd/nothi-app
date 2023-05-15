@@ -1,10 +1,11 @@
 import React from 'react';
 import gurusReducer from '../reducers/gurus';
+import type { StateType } from './state/App';
 
 export const GurusCarouselContext = React.createContext(null);
 export const GurusCarouselDispatchContext = React.createContext(null);
 
-const state = {
+const state: StateType = {
   avatarIndex: 0,
   avatarSelected: -1,
   breadcrumb: ['avatarSelectionView'],
@@ -12,7 +13,7 @@ const state = {
   isRecording: false,
 };
 
-const initialTasks = [state];
+const initialTasks: State[] = [state];
 
 export function GurusProvider({ children }) {
   const [gurus, dispatch] = React.useReducer(gurusReducer, initialTasks);

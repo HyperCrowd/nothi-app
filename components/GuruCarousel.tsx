@@ -1,11 +1,12 @@
-import React from 'react';
 import type { IGuruAvatar } from '../types';
+
+import React from 'react';
 import GuruAvatar from './GuruAvatar';
 import Carousel from 'react-material-ui-carousel';
 
 interface Props {
   avatars: IGuruAvatar[];
-  currentAvatarIndex: number
+  currentAvatarIndex: number;
   onChange: (index: number) => void;
   onAvatarClick: (index: number) => void;
 }
