@@ -2,13 +2,15 @@ import type { IGuruAvatar } from '../types';
 import React, { createContext } from 'react';
 
 export interface StateType {
-  guruCarousel: {
-    avatarIndex?: number;
-    avatarSelected?: number;
-    breadcrumb?: string[];
-    conversationIndex?: number;
-    isRecording?: boolean;
-  };
+  guruCarousel:
+    | {
+        avatarIndex?: number;
+        avatarSelected?: number;
+        breadcrumb?: string[];
+        conversationIndex?: number;
+        isRecording?: boolean;
+      }
+    | never;
 }
 
 export const State: StateType = {
