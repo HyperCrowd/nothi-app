@@ -7,21 +7,33 @@ const actions = {
 
 export default function reducer(state, action) {
   switch (action.type) {
+    /**
+     *
+     */
     case actions.SET_AVATAR_INDEX:
       return { avatarIndex: state.avatarIndex };
 
+    /**
+     *
+     */
     case actions.SET_AVATAR_SELECTED:
       return {
         breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
         avatarSelected: state.avatarSelected,
       };
 
+    /**
+     *
+     */
     case actions.SELECT_CONVERSATION:
       return {
         breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
         conversationIndex: state.conversationIndex,
       };
 
+    /**
+     *
+     */
     case actions.NAVIGATE_BACK:
       const breadcrumb = [...state.breadcrumb].pop();
       return {
