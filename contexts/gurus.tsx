@@ -1,8 +1,8 @@
-import { createContext, useReducer } from 'react';
+import React from 'react';
 import gurusReducer from '../reducers/gurus';
 
-export const GurusCarouselContext = createContext(null);
-export const GurusCarouselDispatchContext = createContext(null);
+export const GurusCarouselContext = React.createContext(null);
+export const GurusCarouselDispatchContext = React.createContext(null);
 
 const state = {
   avatarIndex: 0,
@@ -15,7 +15,7 @@ const state = {
 const initialTasks = [state];
 
 export function GurusProvider({ children }) {
-  const [gurus, dispatch] = useReducer(gurusReducer, initialTasks);
+  const [gurus, dispatch] = React.useReducer(gurusReducer, initialTasks);
 
   return (
     <GurusCarouselContext.Provider value={gurus}>
