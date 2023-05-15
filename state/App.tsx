@@ -1,19 +1,28 @@
 import type { IGuruAvatar } from '../types';
 import React, { createContext } from 'react';
 
-export const State = {
+export interface StateType {
   guruCarousel: {
-    avatarIndex?: 0,
-    avatarSelected?: -1,
-    breadcrumb?: ['avatarSelectionView'],
-    conversationIndex?: -1,
-    isRecording?: false,
+    avatarIndex?: number;
+    avatarSelected?: number;
+    breadcrumb?: string[];
+    conversationIndex?: number;
+    isRecording?: boolean;
+  };
+}
+
+export const State: StateType = {
+  guruCarousel: {
+    avatarIndex: 0,
+    avatarSelected: -1,
+    breadcrumb: ['avatarSelectionView'],
+    conversationIndex: -1,
+    isRecording: false,
   },
 };
 
 export const Context = createContext(State);
 
-export type StateType = typeof State;
 export type ContextType = typeof Context;
 export type SetState = React.Dispatch<React.SetStateAction<StateType>>;
 
