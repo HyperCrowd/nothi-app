@@ -21,9 +21,9 @@ import {
 export default function App() {
   const [state, setState] = useState(State);
   const context = useContext(Context);
+  const { guruCarousel } = state;
 
-  const viewState =
-    state.guruCarousel.breadcrumb[state.guruCarousel.breadcrumb.length - 1];
+  const viewState = guruCarousel.breadcrumb[guruCarousel.breadcrumb.length - 1];
 
   let currentView: JSX.Element;
 
@@ -37,7 +37,7 @@ export default function App() {
           setAvatarSelected={(index: number) =>
             setAvatarSelected(state, setState, index)
           }
-          avatarIndex={state.guruCarousel.avatarIndex}
+          avatarIndex={guruCarousel.avatarIndex}
         />
       );
       break;
@@ -45,8 +45,8 @@ export default function App() {
     case 'avatarConversationsView':
       currentView = (
         <AvatarConversationsView
-          avatarIndex={state.guruCarousel.avatarIndex}
-          avatar={avatars[state.guruCarousel.avatarIndex]}
+          avatarIndex={guruCarousel.avatarIndex}
+          avatar={avatars[guruCarousel.avatarIndex]}
           onConversationClick={(index: number) =>
             selectConversation(state, setState, index)
           }
@@ -57,10 +57,10 @@ export default function App() {
     case 'avatarConversationView':
       currentView = (
         <AvatarConversationView
-          avatar={avatars[state.guruCarousel.avatarIndex]}
+          avatar={avatars[guruCarousel.avatarIndex]}
           conversation={
-            avatars[state.guruCarousel.avatarIndex].conversations[
-              state.guruCarousel.conversationIndex
+            avatars[guruCarousel.avatarIndex].conversations[
+              guruCarousel.conversationIndex
             ]
           }
         />
@@ -71,7 +71,7 @@ export default function App() {
   return (
     <div>
       <AppBar
-        showBack={state.guruCarousel.breadcrumb.length > 1}
+        showBack={guruCarousel.breadcrumb.length > 1}
         onBackClick={() => navigateBack(state, setState)}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>

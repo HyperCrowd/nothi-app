@@ -1,6 +1,6 @@
 export interface IConversation {
   id: string;
-  title: string
+  title: string;
   messages: IConevrsationMessage[];
 }
 

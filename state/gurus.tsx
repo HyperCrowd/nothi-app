@@ -1,21 +1,40 @@
-import type { IGuruAvatar } from '../types';
-import type { GuruCarousel } from './gurus';
-import React, { createContext } from 'react';
-import { guruCarousel } from './gurus';
-
-export interface StateType {
-  guruCarousel: GuruCarousel;
+export interface IConversationMessage {
+  from: string;
+  to: string;
+  createdOn: Date;
+  content: string;
 }
 
-export type SetState = React.Dispatch<React.SetStateAction<StateType>>;
+export interface IConversation {
+  id: string;
+  title: string;
+  messages: IConversationMessage[];
+}
 
-export const State: StateType = {
-  guruCarousel,
+export interface IGuruAvatar {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  conversations: IConversation[];
+  focused: boolean;
+}
+
+export interface GuruCarousel {
+  avatarIndex?: number;
+  avatarSelected?: number;
+  breadcrumb?: string[];
+  conversationIndex?: number;
+  isRecording?: boolean;
+}
+
+export const guruCarousel = {
+  avatarIndex: 0,
+  avatarSelected: -1,
+  breadcrumb: ['avatarSelectionView'],
+  conversationIndex: -1,
+  isRecording: false,
 };
-
-export const Context = createContext(State);
-
-export type ContextType = typeof Context;
 
 export const avatars: IGuruAvatar[] = [
   {
@@ -138,57 +157,3 @@ export const avatars: IGuruAvatar[] = [
     focused: false,
   },
 ];
-
-/**
- *
- */
-export function setAvatarIndex(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    avatarIndex: index,
-  });
-}
-
-/**
- *
- */
-export function setAvatarSelected(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
-    avatarSelected: index,
-  });
-}
-
-/**
- *
- */
-export function selectConversation(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
-    conversationIndex: index,
-  });
-}
-
-/**
- *
- */
-export function navigateBack(state: StateType, setState: SetState) {
-  state.breadcrumb.pop();
-  setState({
-    ...state,
-  });
-}
