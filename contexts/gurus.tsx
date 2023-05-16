@@ -6,14 +6,12 @@ import { State } from '../state/App';
 export const GurusCarouselContext = React.createContext(null);
 export const GurusCarouselDispatchContext = React.createContext(null);
 
-const initialTasks: GuruCarouselState[] = [State.guruCarousel];
-
 export function GurusProvider({ children }) {
   const [guruCarousel, dispatch] = React.useReducer(
     gurusReducer,
-    State.guruCarousel
+    [],
+    () => State.guruCarousel
   );
-  //const [gurus, dispatch] = React.useReducer(gurusReducer, State.guruCarousel);
 
   return (
     <GurusCarouselContext.Provider value={guruCarousel}>

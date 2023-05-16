@@ -48,7 +48,7 @@ export default function reducer(
       };
 
     default:
-      throw new Error();
+      return state;
   }
 }
 
