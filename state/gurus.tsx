@@ -1,3 +1,5 @@
+import React, { createContext } from 'react';
+
 export interface IConversationMessage {
   from: string;
   to: string;
@@ -157,3 +159,9 @@ export const avatars: IGuruAvatar[] = [
     focused: false,
   },
 ];
+
+export const GuruCarouselContext = createContext(guruCarousel);
+
+export type SetGuruCarouselState = React.Dispatch<
+  React.SetStateAction<GuruCarousel>
+>;

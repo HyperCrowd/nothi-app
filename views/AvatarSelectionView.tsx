@@ -1,7 +1,7 @@
 import React from 'react';
 import GuruCarousel from '../components/GuruCarousel';
 import DreamButton from '../components/DreamButton';
-import { avatars } from '../state/App';
+import { avatars } from '../state/gurus';
 
 interface Props {
   setAvatarIndex: (index: number) => void;

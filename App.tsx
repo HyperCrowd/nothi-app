@@ -1,4 +1,3 @@
-import type { StateType, SetState } from './state/App';
 import React, { useState, useContext } from 'react';
 import AvatarSelectionView from './views/AvatarSelectionView';
 import AvatarConversationsView from './views/AvatarConversationsView';
@@ -8,13 +7,12 @@ import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
 import {
   State,
-  avatars,
   setAvatarIndex,
   setAvatarSelected,
   selectConversation,
   navigateBack,
 } from './state/App';
-
+import { avatars } from './state/gurus';
 /**
  *
  */
