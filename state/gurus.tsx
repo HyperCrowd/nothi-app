@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
 export interface IConversationMessage {
   from: string;
@@ -22,7 +22,7 @@ export interface IGuruAvatar {
   focused: boolean;
 }
 
-export interface GuruCarousel {
+export interface IGuruCarousel {
   avatarIndex?: number;
   avatarSelected?: number;
   breadcrumb?: string[];
@@ -30,7 +30,11 @@ export interface GuruCarousel {
   isRecording?: boolean;
 }
 
-export const guruCarousel = {
+export type SetGuruCarouselState = React.Dispatch<
+  React.SetStateAction<GuruCarousel>
+>;
+
+export const state = {
   avatarIndex: 0,
   avatarSelected: -1,
   breadcrumb: ['avatarSelectionView'],
@@ -159,9 +163,3 @@ export const avatars: IGuruAvatar[] = [
     focused: false,
   },
 ];
-
-export const GuruCarouselContext = createContext(guruCarousel);
-
-export type SetGuruCarouselState = React.Dispatch<
-  React.SetStateAction<GuruCarousel>
->;

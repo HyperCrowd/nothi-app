@@ -1,13 +1,13 @@
-import type { GuruCarousel, SetGuruCarouselState } from './gurus';
+import type { IGuruCarousel, SetGuruCarouselState } from './gurus';
 import React, { createContext } from 'react';
-import { guruCarousel, GuruCarouselContext } from './gurus';
+import { state } from './gurus';
 
 export interface StateType {
-  guruCarousel: GuruCarousel;
+  guruCarousel: IGuruCarousel;
 }
 
 export const State: StateType = {
-  guruCarousel,
+  guruCarousel: state,
 };
 
 export const Context = createContext(State);
@@ -18,7 +18,7 @@ export type ContextType = typeof Context;
  *
  */
 export function setAvatarIndex(
-  state: GuruCarousel,
+  state: IGuruCarousel,
   setState: SetGuruCarouselState,
   index: number
 ) {
@@ -32,7 +32,7 @@ export function setAvatarIndex(
  *
  */
 export function setAvatarSelected(
-  state: GuruCarousel,
+  state: IGuruCarousel,
   setState: SetGuruCarouselState,
   index: number
 ) {
@@ -47,7 +47,7 @@ export function setAvatarSelected(
  *
  */
 export function selectConversation(
-  state: GuruCarousel,
+  state: IGuruCarousel,
   setState: SetGuruCarouselState,
   index: number
 ) {
@@ -62,7 +62,7 @@ export function selectConversation(
  *
  */
 export function navigateBack(
-  state: GuruCarousel,
+  state: IGuruCarousel,
   setState: SetGuruCarouselState
 ) {
   state.breadcrumb.pop();

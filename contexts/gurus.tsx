@@ -1,22 +1,22 @@
 import React from 'react';
-import gurusReducer from '../reducers/gurus';
-import { State } from '../state/App';
+import { reducer } from '../reducers/gurus';
+import { guruCarousel } from '../state/gurus';
 
-export const GurusCarouselContext = React.createContext(null);
-export const GurusCarouselDispatchContext = React.createContext(null);
+const Context = React.createContext(null);
+const DispatchContext = React.createContext(null);
 
 export function GurusProvider({ children }) {
-  const [guruCarousel, dispatch] = React.useReducer(
-    gurusReducer,
-    State.guruCarousel,
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    guruCarousel,
     (initialState) => initialState
   );
 
   return (
-    <GurusCarouselContext.Provider value={guruCarousel}>
-      <GurusCarouselDispatchContext.Provider value={dispatch}>
+    <Context.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
         {children}
-      </GurusCarouselDispatchContext.Provider>
-    </GurusCarouselContext.Provider>
+      </DispatchContext.Provider>
+    </Context.Provider>
   );
 }

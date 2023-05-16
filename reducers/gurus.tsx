@@ -1,29 +1,27 @@
-import { State } from '../state/App';
+import type { IGuruCarousel } from '../state/gurus';
 
-export type GuruCarouselState = typeof State.guruCarousel;
-
-export const GuruCarouselActions = {
+export const actions: { [key: string]: string } = {
   SET_AVATAR_INDEX: 'SET_AVATAR_INDEX',
   SET_AVATAR_SELECTED: 'SET_AVATAR_SELECTED',
   SELECT_CONVERSATION: 'SELECT_CONVERSATION',
   NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
-export default function reducer(
-  state: GuruCarouselState,
-  action: { type: string } & GuruCarouselState
+export const reducer => (
+  state: IGuruCarousel,
+  action: { type: string } & IGuruCarousel
 ) {
   switch (action.type) {
     /**
      *
      */
-    case GuruCarouselActions.SET_AVATAR_INDEX:
+    case actions.SET_AVATAR_INDEX:
       return { avatarIndex: state.avatarIndex };
 
     /**
      *
      */
-    case GuruCarouselActions.SET_AVATAR_SELECTED:
+    case actions.SET_AVATAR_SELECTED:
       return {
         breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
         avatarSelected: state.avatarSelected,
@@ -32,7 +30,7 @@ export default function reducer(
     /**
      *
      */
-    case GuruCarouselActions.SELECT_CONVERSATION:
+    case actions.SELECT_CONVERSATION:
       return {
         breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
         conversationIndex: state.conversationIndex,
@@ -41,7 +39,7 @@ export default function reducer(
     /**
      *
      */
-    case GuruCarouselActions.NAVIGATE_BACK:
+    case actions.NAVIGATE_BACK:
       const breadcrumb = [...state.breadcrumb].pop();
       return {
         breadcrumb,
