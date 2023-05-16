@@ -1,5 +1,4 @@
 import React from 'react';
-import type { GuruCarouselState } from '../reducers/gurus';
 import gurusReducer from '../reducers/gurus';
 import { State } from '../state/App';
 
@@ -9,8 +8,8 @@ export const GurusCarouselDispatchContext = React.createContext(null);
 export function GurusProvider({ children }) {
   const [guruCarousel, dispatch] = React.useReducer(
     gurusReducer,
-    [],
-    () => State.guruCarousel
+    State.guruCarousel,
+    (initialState) => initialState
   );
 
   return (

@@ -1,26 +1,30 @@
 import type { IGuruAvatar } from '../types';
+import type { Iterable } from 'immutable';
 import React, { createContext } from 'react';
+import { Map, List, fromJS } from 'immutable';
+
+export interface GuruCarousel {
+  avatarIndex?: number;
+  avatarSelected?: number;
+  breadcrumb?: string[];
+  conversationIndex?: number;
+  isRecording?: boolean;
+}
 
 export interface StateType {
-  guruCarousel:
-    | {
-        avatarIndex?: number;
-        avatarSelected?: number;
-        breadcrumb?: string[];
-        conversationIndex?: number;
-        isRecording?: boolean;
-      }
-    | never;
+  guruCarousel: Map<string, GuruCarousel>;
 }
 
 export const State: StateType = {
-  guruCarousel: {
+  guruCarousel: Map<string, GuruCarousel>({
+    /*
     avatarIndex: 0,
     avatarSelected: -1,
-    breadcrumb: ['avatarSelectionView'],
+    breadcrumb: List(['avatarSelectionView']),
     conversationIndex: -1,
     isRecording: false,
-  },
+    */
+  }),
 };
 
 export const Context = createContext(State);
