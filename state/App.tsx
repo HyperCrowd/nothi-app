@@ -2,6 +2,8 @@ import type { IGuruCarousel, SetGuruCarouselState } from './gurus';
 import React, { createContext } from 'react';
 import { state } from './gurus';
 
+// @TODO: Gut this and bring in the reducer (whew)
+
 export interface StateType {
   guruCarousel: IGuruCarousel;
 }

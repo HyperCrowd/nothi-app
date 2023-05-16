@@ -7,10 +7,13 @@ export const actions: { [key: string]: string } = {
   NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
-export const reducer => (
+/**
+ * Reducer
+ */
+export const reducer = (
   state: IGuruCarousel,
   action: { type: string } & IGuruCarousel
-) {
+) => {
   switch (action.type) {
     /**
      *
@@ -48,7 +51,7 @@ export const reducer => (
     default:
       return state;
   }
-}
+};
 
 /*
  export function setAvatarIndex(

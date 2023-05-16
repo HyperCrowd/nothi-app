@@ -31,9 +31,12 @@ export interface IGuruCarousel {
 }
 
 export type SetGuruCarouselState = React.Dispatch<
-  React.SetStateAction<GuruCarousel>
+  React.SetStateAction<IGuruCarousel>
 >;
 
+/**
+ * State
+ */
 export const state = {
   avatarIndex: 0,
   avatarSelected: -1,
