@@ -63,7 +63,6 @@ export default function GuruAvatar({
     </div>
   );
 
-  console.log(size);
   const result = (
     <div className={text === '' ? 'guruAvatar' : 'guruAvatar main-bkg'}>
       <Badge

@@ -13,55 +13,62 @@ import {
   navigateBack,
 } from './state/App';
 import { avatars } from './state/gurus';
+import { GurusProvider, useGuruContext } from './contexts/gurus';
 /**
  *
  */
 export default function App() {
-  const [state, setState] = useState(State);
-  const context = useContext(Context);
-  const { guruCarousel } = state;
+  const { state, dispatch } = useGuruContext() || {};
 
-  const viewState = guruCarousel.breadcrumb[guruCarousel.breadcrumb.length - 1];
+  if (state === undefined) {
+    return <></>;
+  }
+
+  const viewState = state.breadcrumb[state.breadcrumb.length - 1];
 
   let currentView: JSX.Element;
 
   switch (viewState) {
     case 'avatarSelectionView':
       currentView = (
-        <AvatarSelectionView
-          setAvatarIndex={(index: number) =>
-            setAvatarIndex(state, setState, index)
-          }
-          setAvatarSelected={(index: number) =>
-            setAvatarSelected(state, setState, index)
-          }
-          avatarIndex={guruCarousel.avatarIndex}
-        />
+        <GurusProvider>
+          <AvatarSelectionView
+            setAvatarIndex={(index: number) =>
+              setAvatarIndex(state, setState, index)
+            }
+            setAvatarSelected={(index: number) =>
+              setAvatarSelected(state, setState, index)
+            }
+            avatarIndex={state.avatarIndex}
+          />
+        </GurusProvider>
       );
       break;
 
     case 'avatarConversationsView':
       currentView = (
-        <AvatarConversationsView
-          avatarIndex={guruCarousel.avatarIndex}
-          avatar={avatars[guruCarousel.avatarIndex]}
-          onConversationClick={(index: number) =>
-            selectConversation(state, setState, index)
-          }
-        />
+        <GurusProvider>
+          <AvatarConversationsView
+            avatarIndex={state.avatarIndex}
+            avatar={avatars[state.avatarIndex]}
+            onConversationClick={(index: number) =>
+              selectConversation(state, setState, index)
+            }
+          />
+        </GurusProvider>
       );
       break;
 
     case 'avatarConversationView':
       currentView = (
-        <AvatarConversationView
-          avatar={avatars[guruCarousel.avatarIndex]}
-          conversation={
-            avatars[guruCarousel.avatarIndex].conversations[
-              guruCarousel.conversationIndex
-            ]
-          }
-        />
+        <GurusProvider>
+          <AvatarConversationView
+            avatar={avatars[state.avatarIndex]}
+            conversation={
+              avatars[state.avatarIndex].conversations[state.conversationIndex]
+            }
+          />
+        </GurusProvider>
       );
       break;
   }
@@ -69,7 +76,7 @@ export default function App() {
   return (
     <div>
       <AppBar
-        showBack={guruCarousel.breadcrumb.length > 1}
+        showBack={state.breadcrumb.length > 1}
         onBackClick={() => navigateBack(state, setState)}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>

@@ -20,13 +20,15 @@ export type ContextType = typeof Context;
  *
  */
 export function setAvatarIndex(
-  state: IGuruCarousel,
-  setState: SetGuruCarouselState,
+  state: StateType,
+  setState: SetState,
   index: number
 ) {
   setState({
     ...state,
-    avatarIndex: index,
+    guruCarousel: {
+      avatarIndex: index,
+    },
   });
 }
 
@@ -34,14 +36,16 @@ export function setAvatarIndex(
  *
  */
 export function setAvatarSelected(
-  state: IGuruCarousel,
-  setState: SetGuruCarouselState,
+  state: StateType,
+  setState: SetState,
   index: number
 ) {
   setState({
     ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
-    avatarSelected: index,
+    guruCarousel: {
+      breadcrumb: [...state.guruCarousel.breadcrumb, 'avatarConversationsView'],
+      avatarSelected: index,
+    },
   });
 }
 
@@ -49,25 +53,24 @@ export function setAvatarSelected(
  *
  */
 export function selectConversation(
-  state: IGuruCarousel,
-  setState: SetGuruCarouselState,
+  state: StateType,
+  setState: SetState,
   index: number
 ) {
   setState({
     ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
-    conversationIndex: index,
+    guruCarousel: {
+      breadcrumb: [...state.guruCarousel.breadcrumb, 'avatarConversationView'],
+      conversationIndex: index,
+    },
   });
 }
 
 /**
  *
  */
-export function navigateBack(
-  state: IGuruCarousel,
-  setState: SetGuruCarouselState
-) {
-  state.breadcrumb.pop();
+export function navigateBack(state: StateType, setState: SetState) {
+  state.guruCarousel.breadcrumb.pop();
   setState({
     ...state,
   });
