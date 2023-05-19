@@ -37,7 +37,7 @@ export type SetGuruCarouselState = React.Dispatch<
 /**
  * State
  */
-export const state = {
+export const state: IGuruCarousel = {
   avatarIndex: 0,
   avatarSelected: -1,
   breadcrumb: ['avatarSelectionView'],

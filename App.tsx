@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import AvatarSelectionView from './views/AvatarSelectionView';
 import AvatarConversationsView from './views/AvatarConversationsView';
 import AvatarConversationView from './views/AvatarConversationView';

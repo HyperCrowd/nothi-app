@@ -1,15 +1,16 @@
 import React, { useContext, Dispatch } from 'react';
 import type { IGuruCarousel } from '../state/gurus';
+import type { Action } from '.';
 import { reducer } from '../reducers/gurus';
 import { state } from '../state/gurus';
 
-const Context = React.createContext(null);
-const DispatchContext = React.createContext(null);
-
 interface GuruContext {
   state: IGuruCarousel;
-  dispatch: Dispatch<{ type: string } & IGuruCarousel>;
+  dispatch: Dispatch<Action & IGuruCarousel>;
 }
+
+const Context = React.createContext<GuruContext | undefined>(undefined);
+const DispatchContext = React.createContext(null);
 
 /**
  *
