@@ -10,28 +10,26 @@ export interface GuruContext {
 }
 
 const DispatchContext = React.createContext(null);
-const Context = React.createContext<GuruContext>({
-  state,
-  dispatch: () => {},
-});
+const Context = React.createContext<GuruContext | undefined>(undefined);
 
 /**
  *
  */
 export const useGuruContext = (): GuruContext => {
   const context = useContext<GuruContext>(Context);
-  return context;
+
+  return context === undefined
+    ? {
+        state,
+      }
+    : context;
 };
 
 /**
  * Context Provider
  */
 export function GurusProvider({ children }) {
-  const [providerState, dispatch] = React.useReducer(
-    reducer,
-    state,
-    (initialState) => initialState
-  );
+  const [providerState, dispatch] = React.useReducer(reducer, state);
 
   return (
     <Context.Provider

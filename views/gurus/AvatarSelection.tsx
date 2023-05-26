@@ -11,8 +11,6 @@ interface Props {
 }
 
 export default function AvatarSelectionView({ avatarIndex }: Props) {
-  const context = useGuruContext();
-
   return (
     <div>
       <GuruCarousel

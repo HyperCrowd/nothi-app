@@ -12,35 +12,31 @@ export interface NavigationContext {
 const DispatchContext = React.createContext(null);
 const Context = React.createContext<NavigationContext>({
   state,
-  dispatch: () => {},
+  dispatch: undefined,
 });
 
 /**
  *
  */
 export const useNavigationContext = (): NavigationContext => {
-  const context = useContext<NavigationContext>(Context);
-  return context;
+  const [contextState, dispatch] = React.useReducer(reducer, state);
+
+  return {
+    state: contextState,
+    dispatch,
+  };
 };
 
 /**
  * Context Provider
  */
 export function NavigationProvider({ children }) {
-  const [providerState, dispatch] = React.useReducer(
-    reducer,
-    state,
-    (initialState) => initialState
-  );
+  const context = useNavigationContext();
+  // const [providerState, dispatch] = React.useReducer(reducer, state);
 
   return (
-    <Context.Provider
-      value={{
-        state: providerState,
-        dispatch,
-      }}
-    >
-      <DispatchContext.Provider value={dispatch}>
+    <Context.Provider value={context}>
+      <DispatchContext.Provider value={context.dispatch}>
         {children}
       </DispatchContext.Provider>
     </Context.Provider>

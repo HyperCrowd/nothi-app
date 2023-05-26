@@ -11,7 +11,7 @@ interface Context {
 }
 class ContextBus {
   contexts: Record<string, Context> = {};
-  queue: [Context['dispatch'], Action & State][] = [];
+  queue: Array<() => void> = [];
   loaded: boolean = false;
 
   /**
@@ -27,8 +27,11 @@ class ContextBus {
   schedule(action: (...args: any[]) => Action & State, ...args: any[]) {
     const runNow = this.queue.length === 0;
     const details = action(...args);
-    const context = this.contexts[details.context];
-    this.queue.push([context.dispatch, details]);
+
+    this.queue.push(() => {
+      const context = this.contexts[details.context];
+      context.dispatch(details);
+    });
 
     if (runNow) {
       this.run();
@@ -43,9 +46,8 @@ class ContextBus {
       return;
     }
 
-    const [dispatch, details] = this.queue.pop();
-    const context = this.contexts[details.context];
-    dispatch.apply(context, details);
+    const action = this.queue.pop();
+    action();
   }
 }
 
