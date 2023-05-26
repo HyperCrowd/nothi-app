@@ -15,6 +15,8 @@ const Context = React.createContext<NavigationContext>({
   dispatch: undefined,
 });
 
+export const getDefaultNavigationState = () => state;
+
 /**
  *
  */

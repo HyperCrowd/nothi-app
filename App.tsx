@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
 import contextBus from './contexts';
 import AvatarSelectionView from './views/gurus/AvatarSelection';
 import AvatarConversationsView from './views/gurus/AvatarConversations';
@@ -7,11 +7,15 @@ import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
 import { navigateBack } from './actions/navigation';
 import { avatars } from './state/gurus';
-import { GurusProvider, useGuruContext } from './contexts/gurus';
+import { GurusProvider, GuruContext } from './contexts/gurus';
 import {
   NavigationProvider,
   useNavigationContext,
 } from './contexts/navigation';
+
+const defaultContext = {
+  state: {},
+};
 
 /**
  *
@@ -19,9 +23,19 @@ import {
 export default function App() {
   // Process all actions after all renders are done
   const navigationContext = useNavigationContext();
-  const guruContext = useGuruContext();
-  const { avatarIndex, conversationIndex } = guruContext.state;
-  const { breadcrumb } = navigationContext.state;
+  const guruContext = useContext(GuruContext);
+  const [isContextPopulated, setIsContextPopulated] = useState(false);
+
+  useEffect(() => {
+    if (guruContext) {
+      setIsContextPopulated(true);
+    }
+  }, [isContextPopulated, guruContext]);
+
+  if (!isContextPopulated) {
+    // Context value is not yet populated, return null or a loading indicator
+    return null; // or <div>Loading...</div>
+  }
 
   useLayoutEffect(() => {
     console.log('render complete');
@@ -30,6 +44,9 @@ export default function App() {
 
   contextBus.refresh('navigation', navigationContext);
   contextBus.refresh('gurus', guruContext);
+
+  const { avatarIndex, conversationIndex } = guruContext.state;
+  const { breadcrumb } = navigationContext.state;
 
   const viewState = breadcrumb[breadcrumb.length - 1];
 
