@@ -20,7 +20,8 @@ export default function App() {
   // Process all actions after all renders are done
   const navigationContext = useNavigationContext();
   const guruContext = useGuruContext();
-  const { state } = guruContext;
+  const { avatarIndex, conversationIndex } = guruContext.state;
+  const { breadcrumb } = navigationContext.state;
 
   useLayoutEffect(() => {
     contextBus.run();
@@ -33,14 +34,7 @@ export default function App() {
     contextBus.loaded = true;
   }
 
-  if (state === undefined) {
-    return <></>;
-  }
-
-  const viewState =
-    navigationContext.state.breadcrumb[
-      navigationContext.state.breadcrumb.length - 1
-    ];
+  const viewState = breadcrumb[breadcrumb.length - 1];
 
   let currentView: JSX.Element;
 
@@ -48,7 +42,7 @@ export default function App() {
     case 'avatarSelectionView':
       currentView = (
         <GurusProvider>
-          <AvatarSelectionView avatarIndex={state.avatarIndex} />
+          <AvatarSelectionView avatarIndex={avatarIndex} />
         </GurusProvider>
       );
       break;
@@ -57,8 +51,8 @@ export default function App() {
       currentView = (
         <GurusProvider>
           <AvatarConversationsView
-            avatarIndex={state.avatarIndex}
-            avatar={avatars[state.avatarIndex]}
+            avatarIndex={avatarIndex}
+            avatar={avatars[avatarIndex]}
           />
         </GurusProvider>
       );
@@ -68,10 +62,8 @@ export default function App() {
       currentView = (
         <GurusProvider>
           <AvatarConversationView
-            avatar={avatars[state.avatarIndex]}
-            conversation={
-              avatars[state.avatarIndex].conversations[state.conversationIndex]
-            }
+            avatar={avatars[avatarIndex]}
+            conversation={avatars[avatarIndex].conversations[conversationIndex]}
           />
         </GurusProvider>
       );
@@ -82,7 +74,7 @@ export default function App() {
     <div>
       <NavigationProvider>
         <AppBar
-          showBack={navigationContext.state.breadcrumb.length > 1}
+          showBack={breadcrumb.length > 1}
           onBackClick={() => contextBus.schedule(navigateBack)}
         />
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>
