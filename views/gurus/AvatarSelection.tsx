@@ -9,6 +9,7 @@ import contextBus from '../../contexts';
 export default function AvatarSelectionView() {
   const { state, dispatch } = useContext(GuruContext);
   const { avatarIndex } = state;
+  const avatar = avatars[avatarIndex].name;
 
   return (
     <div>
@@ -22,10 +23,10 @@ export default function AvatarSelectionView() {
         }}
         currentAvatarIndex={avatarIndex}
       />
-      <DreamButton avatar={avatars[avatarIndex]} />
+      <DreamButton avatar={avatar} />
       <div className="dream-instructions">
         <p>Press to speak to the</p>
-        <p>{avatars[avatarIndex].name}</p>
+        <p>{avatar.name}</p>
       </div>
     </div>
   );

@@ -20,6 +20,7 @@ export const GuruContext = React.createContext<IGuruContext>({
  */
 export function GurusProvider({ children }) {
   const [providerState, dispatch] = React.useReducer(reducer, state);
+  console.log(providerState);
 
   return (
     <GuruContext.Provider

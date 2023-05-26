@@ -6,7 +6,6 @@ import AvatarConversationView from './views/gurus/AvatarConversation';
 import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
 import { navigateBack } from './actions/navigation';
-
 import { GurusProvider, GuruContext } from './contexts/gurus';
 import { NavigationProvider, NavigationContext } from './contexts/navigation';
 
@@ -16,7 +15,6 @@ import { NavigationProvider, NavigationContext } from './contexts/navigation';
 export default function App() {
   // Process all actions after all renders are done
   const navigationContext = useContext(NavigationContext);
-  const guruContext = useContext(GuruContext);
 
   useLayoutEffect(() => {
     contextBus.run();
@@ -59,7 +57,9 @@ export default function App() {
       <NavigationProvider>
         <AppBar
           showBack={breadcrumb.length > 1}
-          onBackClick={() => contextBus.schedule(navigateBack)}
+          onBackClick={() =>
+            contextBus.schedule(navigationContext.dispatch, navigateBack)
+          }
         />
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>
           <div>{currentView}</div>

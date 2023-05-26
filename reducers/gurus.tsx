@@ -17,8 +17,8 @@ export const reducer = (
      */
     case GuruActions.SET_AVATAR_INDEX:
       return {
-        ...state,
         avatarIndex: action.avatarIndex,
+        ...state,
       };
 
     /**
@@ -27,6 +27,7 @@ export const reducer = (
     case GuruActions.SET_AVATAR_SELECTED:
       return {
         avatarSelected: action.avatarSelected,
+        ...state,
       };
 
     /**
@@ -34,8 +35,8 @@ export const reducer = (
      */
     case GuruActions.SELECT_CONVERSATION:
       return {
-        ...state,
         conversationIndex: action.conversationIndex,
+        ...state,
       };
 
     default:
