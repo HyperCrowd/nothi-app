@@ -5,8 +5,8 @@ import { reducer } from '../reducers/gurus';
 import { state } from '../state/gurus';
 
 export interface GuruContext {
-  state: IGuruCarousel & Record<string, unknown>;
-  dispatch: Dispatch<Action & IGuruCarousel & Record<string, unknown>>;
+  state: IGuruCarousel;
+  dispatch: Dispatch<Action & IGuruCarousel>;
 }
 
 const DispatchContext = React.createContext(null);

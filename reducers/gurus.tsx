@@ -1,3 +1,4 @@
+import type { Action } from '../contexts';
 import type { IGuruCarousel } from '../state/gurus';
 import { GuruActions } from '../actions/gurus';
 
@@ -6,9 +7,10 @@ import { GuruActions } from '../actions/gurus';
  */
 export const reducer = (
   state: IGuruCarousel,
-  action: { type: string } & IGuruCarousel
+  action: Action & IGuruCarousel
 ): IGuruCarousel => {
   console.log('guru', action);
+
   switch (action.type) {
     /**
      *

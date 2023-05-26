@@ -1,3 +1,4 @@
+import type { Action } from '../contexts';
 import type { INavigation } from '../state/navigation';
 import { NavigationActions } from '../actions/navigation';
 
@@ -6,7 +7,7 @@ import { NavigationActions } from '../actions/navigation';
  */
 export const reducer = (
   state: INavigation,
-  action: { type: string } & INavigation
+  action: Action & INavigation
 ): INavigation => {
   switch (action.type) {
     /**
