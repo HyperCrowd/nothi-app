@@ -24,6 +24,7 @@ export default function App() {
   const { breadcrumb } = navigationContext.state;
 
   useLayoutEffect(() => {
+    console.log('render complete');
     contextBus.run();
   });
 

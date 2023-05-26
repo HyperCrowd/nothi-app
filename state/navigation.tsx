@@ -1,4 +1,4 @@
-export interface INavigation {
+export interface INavigation extends Record<string, unknown> {
   view?: string;
   breadcrumb?: string[];
 }

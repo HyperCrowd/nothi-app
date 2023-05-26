@@ -28,6 +28,9 @@ class ContextBus {
     const details = action(...args);
     const context = this.contexts[details.context];
     this.queue.push([context.dispatch, details]);
+    console.log(this.queue);
+
+    this.run();
   }
 
   /**

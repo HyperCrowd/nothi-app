@@ -22,7 +22,7 @@ export interface IGuruAvatar {
   focused: boolean;
 }
 
-export interface IGuruCarousel {
+export interface IGuruCarousel extends Record<string, unknown> {
   avatarIndex?: number;
   avatarSelected?: number;
   conversationIndex?: number;

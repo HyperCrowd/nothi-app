@@ -8,6 +8,7 @@ export const reducer = (
   state: IGuruCarousel,
   action: { type: string } & IGuruCarousel
 ): IGuruCarousel => {
+  console.log('guru', action);
   switch (action.type) {
     /**
      *
