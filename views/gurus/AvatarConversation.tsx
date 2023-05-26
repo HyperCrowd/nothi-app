@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import type { IConversation, IGuruAvatar } from '../../types';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -39,10 +39,16 @@ function getAvatar(from: string, avatar: IGuruAvatar) {
   );
 }
 
+/**
+ *             avatar={avatars[avatarIndex]}
+            conversation={avatars[avatarIndex].conversations[conversationIndex]}
+ */
 export default function AvatarConversationView({
   conversation,
   avatar,
 }: Props) {
+  const guruContext = useContext(GuruContext);
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stack spacing={2}>

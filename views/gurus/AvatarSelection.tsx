@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GuruCarousel from '../../components/GuruCarousel';
 import DreamButton from '../../components/DreamButton';
 import { avatars } from '../../state/gurus';
-import { useGuruContext } from '../../contexts/gurus';
+import { GuruContext } from '../../contexts/gurus';
 import { setAvatarIndex, setAvatarSelected } from '../../actions/gurus';
 import contextBus from '../../contexts';
 
-interface Props {
-  avatarIndex: number;
-}
+interface Props {}
 
-export default function AvatarSelectionView({ avatarIndex }: Props) {
+export default function AvatarSelectionView() {
+  const { state, dispatch } = useContext(GuruContext)
+  const { avatarIndex } = state;
+
   return (
     <div>
       <GuruCarousel
         avatars={avatars}
         onChange={(index: number) => {
-          contextBus.schedule(setAvatarIndex, index);
+          contextBus.schedule(dispatch, setAvatarIndex, index);
         }}
         onAvatarClick={(index: number) => {
-          contextBus.schedule(setAvatarSelected, index);
+          contextBus.schedule(dispatch, setAvatarSelected, index);
         }}
         currentAvatarIndex={avatarIndex}
       />

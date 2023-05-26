@@ -25,3 +25,13 @@ export const navigateTo = (view: string) => {
     view,
   };
 };
+
+/**
+ *
+ */
+export const refresh = () => {
+  return {
+    type: NavigationActions.REFFESH,
+    context,
+  };
+};

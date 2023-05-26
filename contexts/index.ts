@@ -1,3 +1,4 @@
+import type { Dispatch } from 'react';
 export interface Action {
   type: string;
   context: string;
@@ -10,28 +11,34 @@ interface Context {
   dispatch: (value: Action & State) => void;
 }
 class ContextBus {
-  contexts: Record<string, Context> = {};
   queue: Array<() => void> = [];
   loaded: boolean = false;
 
   /**
    *
    */
-  refresh(name: string, context: Context) {
-    this.contexts[name] = context;
+  enqueue(
+    dispatch: Dispatch<Action & State>,
+    action: (...args: any[]) => Action & State,
+    ...args: any[]
+  ) {
+    const details = action(...args);
+
+    this.queue.push(() => {
+      dispatch(details);
+    });
   }
 
   /**
    *
    */
-  schedule(action: (...args: any[]) => Action & State, ...args: any[]) {
+  schedule(
+    dispatch: Dispatch<Action & State>,
+    action: (...args: any[]) => Action & State,
+    ...args: any[]
+  ) {
     const runNow = this.queue.length === 0;
-    const details = action(...args);
-
-    this.queue.push(() => {
-      const context = this.contexts[details.context];
-      context.dispatch(details);
-    });
+    this.enqueue(dispatch, action, ...args);
 
     if (runNow) {
       this.run();

@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import GuruAvatar from '../../components/GuruAvatar';
 import { useGuruContext } from '../../contexts/gurus';
+import { avatars } from '../state/gurus';
 
 interface Props {
   avatarIndex: number;
@@ -25,7 +26,8 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 /**
- *
+ *             avatarIndex={avatarIndex}
+            avatar={avatars[avatarIndex]}
  */
 export default function AvatarConversationsView({
   avatarIndex,

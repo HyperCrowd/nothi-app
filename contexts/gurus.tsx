@@ -10,9 +10,10 @@ export interface IGuruContext {
 }
 
 const DispatchContext = React.createContext(null);
-export const GuruContext = React.createContext<IGuruContext | undefined>(
-  undefined
-);
+export const GuruContext = React.createContext<IGuruContext>({
+  state,
+  dispatch: () => {},
+});
 
 export const getDefaultGuruState = () => state;
 

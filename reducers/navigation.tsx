@@ -30,6 +30,14 @@ export const reducer = (
         breadcrumb: [...state.breadcrumb, action.view],
       };
 
+    /**
+     *
+     */
+    case NavigationActions.REFRESH:
+      return {
+        refresh: !state.refresh,
+      };
+
     default:
       return state;
   }
