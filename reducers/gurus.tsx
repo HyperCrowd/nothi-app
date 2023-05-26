@@ -27,8 +27,6 @@ export const reducer = (
     case GuruActions.SET_AVATAR_SELECTED:
       return {
         ...state,
-        // @TODO build context queue
-        // breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
         avatarSelected: action.avatarSelected,
       };
 
@@ -38,8 +36,6 @@ export const reducer = (
     case GuruActions.SELECT_CONVERSATION:
       return {
         ...state,
-        // @TODO build context queue
-        // breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
         conversationIndex: action.conversationIndex,
       };
 

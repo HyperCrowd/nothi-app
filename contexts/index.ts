@@ -25,11 +25,14 @@ class ContextBus {
    *
    */
   schedule(action: (...args: any[]) => Action & State, ...args: any[]) {
+    const runNow = this.queue.length === 0;
     const details = action(...args);
     const context = this.contexts[details.context];
     this.queue.push([context.dispatch, details]);
 
-    this.run();
+    if (runNow) {
+      this.run();
+    }
   }
 
   /**
@@ -41,8 +44,8 @@ class ContextBus {
     }
 
     const [dispatch, details] = this.queue.pop();
-
-    dispatch(details);
+    const context = this.contexts[details.context];
+    dispatch.apply(context, details);
   }
 }
 
