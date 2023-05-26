@@ -4,7 +4,7 @@ import type { Action } from '.';
 import { reducer } from '../reducers/gurus';
 import { state } from '../state/gurus';
 
-interface GuruContext {
+export interface GuruContext {
   state: IGuruCarousel;
   dispatch: Dispatch<Action & IGuruCarousel>;
 }

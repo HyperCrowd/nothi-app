@@ -11,7 +11,7 @@ import { GurusProvider, useGuruContext } from './contexts/gurus';
  *
  */
 export default function App() {
-  const { state, dispatch } = useGuruContext() || {};
+  const { state } = useGuruContext() || {};
 
   if (state === undefined) {
     return <></>;
