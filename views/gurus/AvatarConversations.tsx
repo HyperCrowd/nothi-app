@@ -1,16 +1,21 @@
-import * as React from 'react';
-import type { IConversation, IGuruAvatar } from '../../types';
+import React from 'react';
+import type { IGuruAvatar } from '../../types';
+import { selectConversation } from '../../actions/gurus';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import GuruAvatar from '../../components/GuruAvatar';
+import { useGuruContext } from '../../contexts/gurus';
 
 interface Props {
+  avatarIndex: number;
   avatar: IGuruAvatar;
-  conversation: IConversation;
 }
 
+/**
+ *
+ */
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -19,72 +24,29 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function getAvatar(from: string, avatar: IGuruAvatar) {
-  return from === 'user' ? (
-    <GuruAvatar
-      text="User"
-      width={64}
-      height={64}
-      canClick={false}
-      showBadge={false}
-    />
-  ) : (
-    <GuruAvatar
-      avatar={avatar}
-      width={64}
-      height={64}
-      canClick={false}
-      showBadge={false}
-    />
-  );
-}
-
-export default function AvatarConversationView({
-  conversation,
+/**
+ *
+ */
+export default function AvatarConversationsView({
+  avatarIndex,
   avatar,
 }: Props) {
+  const context = useGuruContext();
+
   return (
     <Box sx={{ width: '100%' }}>
+      <GuruAvatar avatar={avatar} canClick={false} showBadge={false} />
       <Stack spacing={2}>
-        {conversation.messages.map((message, i) => {
-          const fromAvatar = getAvatar(message.from, avatar);
-
-          const item =
-            message.from === 'user' ? (
-              <span
-                className="message"
-                style={{
-                  float: 'right',
-                }}
-              >
-                {message.content}
-              </span>
-            ) : (
-              <div>
-                <span
-                  style={{
-                    float: 'left',
-                  }}
-                >
-                  {fromAvatar}
-                </span>
-                <span
-                  className="message"
-                  style={{
-                    float: 'left',
-                  }}
-                >
-                  {message.content}
-                </span>
-              </div>
-            );
-
-          return (
-            <Item key={`convo-${conversation.id}-${i}`} className="message">
-              {item}
-            </Item>
-          );
-        })}
+        {avatar.conversations.map((conversation, i) => (
+          <Item
+            key={`convo-${conversation.id}`}
+            onClick={(i: number) => {
+              selectConversation(context, i);
+            }}
+          >
+            {conversation.title}
+          </Item>
+        ))}
       </Stack>
     </Box>
   );

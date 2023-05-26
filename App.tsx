@@ -7,11 +7,13 @@ import { Slide } from '@mui/material';
 import { navigateBack } from './actions/gurus';
 import { avatars } from './state/gurus';
 import { GurusProvider, useGuruContext } from './contexts/gurus';
+
 /**
  *
  */
 export default function App() {
-  const { state } = useGuruContext() || {};
+  const context = useGuruContext();
+  const { state } = context;
 
   if (state === undefined) {
     return <></>;
@@ -59,7 +61,7 @@ export default function App() {
     <div>
       <AppBar
         showBack={state.breadcrumb.length > 1}
-        onBackClick={() => navigateBack()}
+        onBackClick={() => navigateBack(context)}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <div>{currentView}</div>
