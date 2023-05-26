@@ -13,21 +13,25 @@ export const actions: { [key: string]: string } = {
 export const reducer = (
   state: IGuruCarousel,
   action: { type: string } & IGuruCarousel
-) => {
+): IGuruCarousel => {
   switch (action.type) {
     /**
      *
      */
     case actions.SET_AVATAR_INDEX:
-      return { avatarIndex: state.avatarIndex };
+      return {
+        ...state,
+        avatarIndex: action.avatarIndex,
+      };
 
     /**
      *
      */
     case actions.SET_AVATAR_SELECTED:
       return {
+        ...state,
         breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
-        avatarSelected: state.avatarSelected,
+        avatarSelected: action.avatarSelected,
       };
 
     /**
@@ -35,16 +39,20 @@ export const reducer = (
      */
     case actions.SELECT_CONVERSATION:
       return {
+        ...state,
         breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
-        conversationIndex: state.conversationIndex,
+        conversationIndex: action.conversationIndex,
       };
 
     /**
      *
      */
     case actions.NAVIGATE_BACK:
-      const breadcrumb = [...state.breadcrumb].pop();
+      const breadcrumb = [...action.breadcrumb];
+      breadcrumb.pop();
+
       return {
+        ...state,
         breadcrumb,
       };
 
@@ -52,47 +60,3 @@ export const reducer = (
       return state;
   }
 };
-
-/*
- export function setAvatarIndex(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    avatarIndex: index,
-  });
-}
-
-export function setAvatarSelected(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
-    avatarSelected: index,
-  });
-}
-
-export function selectConversation(
-  state: StateType,
-  setState: SetState,
-  index: number
-) {
-  setState({
-    ...state,
-    breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
-    conversationIndex: index,
-  });
-}
-
-export function navigateBack(state: StateType, setState: SetState) {
-  state.breadcrumb.pop();
-  setState({
-    ...state,
-  });
-}
-*/

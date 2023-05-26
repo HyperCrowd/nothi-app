@@ -34,10 +34,10 @@ export default function App() {
         <GurusProvider>
           <AvatarSelectionView
             setAvatarIndex={(index: number) =>
-              setAvatarIndex(state, setState, index)
+              setAvatarIndex(state, dispatch, index)
             }
             setAvatarSelected={(index: number) =>
-              setAvatarSelected(state, setState, index)
+              setAvatarSelected(state, dispatch, index)
             }
             avatarIndex={state.avatarIndex}
           />
@@ -52,7 +52,7 @@ export default function App() {
             avatarIndex={state.avatarIndex}
             avatar={avatars[state.avatarIndex]}
             onConversationClick={(index: number) =>
-              selectConversation(state, setState, index)
+              selectConversation(state, dispatch, index)
             }
           />
         </GurusProvider>
@@ -77,7 +77,7 @@ export default function App() {
     <div>
       <AppBar
         showBack={state.breadcrumb.length > 1}
-        onBackClick={() => navigateBack(state, setState)}
+        onBackClick={() => navigateBack(state, dispatch)}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <div>{currentView}</div>

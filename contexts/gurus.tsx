@@ -10,9 +10,9 @@ interface GuruContext {
 }
 
 const DispatchContext = React.createContext(null);
-const Context = React.createContext<GuruContext | undefined>({
+const Context = React.createContext<GuruContext>({
   state,
-  dispatch: { type: '' },
+  dispatch: () => {},
 });
 
 /**
@@ -34,7 +34,12 @@ export function GurusProvider({ children }) {
   );
 
   return (
-    <Context.Provider value={providerState}>
+    <Context.Provider
+      value={{
+        state: providerState,
+        dispatch,
+      }}
+    >
       <DispatchContext.Provider value={dispatch}>
         {children}
       </DispatchContext.Provider>
