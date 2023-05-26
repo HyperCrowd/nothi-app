@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import type { IGuruAvatar } from '../../types';
 import { selectConversation } from '../../actions/gurus';
 import Box from '@mui/material/Box';
@@ -8,11 +8,7 @@ import { styled } from '@mui/material/styles';
 import GuruAvatar from '../../components/GuruAvatar';
 import { GuruContext } from '../../contexts/gurus';
 import { avatars } from '../../state/gurus';
-
-interface Props {
-  avatarIndex: number;
-  avatar: IGuruAvatar;
-}
+import contextBus from '../../contexts';
 
 /**
  *
@@ -25,12 +21,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-/**
- *             avatarIndex={avatarIndex}
-            avatar={avatars[avatarIndex]}
- */
 export default function AvatarConversationsView() {
-  const context = useGuruContext();
   const { state, dispatch } = useContext(GuruContext);
   const { avatarIndex } = state;
   const avatar = avatars[avatarIndex];
@@ -43,7 +34,7 @@ export default function AvatarConversationsView() {
           <Item
             key={`convo-${conversation.id}`}
             onClick={(i: number) => {
-              selectConversation(context, i);
+              contextBus(dispatch, selectConversation, i);
             }}
           >
             {conversation.title}

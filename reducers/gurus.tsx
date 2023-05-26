@@ -26,7 +26,6 @@ export const reducer = (
      */
     case GuruActions.SET_AVATAR_SELECTED:
       return {
-        ...state,
         avatarSelected: action.avatarSelected,
       };
 

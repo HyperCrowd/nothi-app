@@ -8,11 +8,9 @@ import GuruAvatar from '../../components/GuruAvatar';
 import { GuruContext } from '../../contexts/gurus';
 import { avatars } from '../../state/gurus';
 
-interface Props {
-  avatar: IGuruAvatar;
-  conversation: IConversation;
-}
-
+/**
+ *
+ */
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -21,6 +19,9 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+/**
+ *
+ */
 function getAvatar(from: string, avatar: IGuruAvatar) {
   return from === 'user' ? (
     <GuruAvatar
@@ -41,12 +42,9 @@ function getAvatar(from: string, avatar: IGuruAvatar) {
   );
 }
 
-/**
- *
- */
 export default function AvatarConversationView() {
   const { state, dispatch } = useContext(GuruContext);
-  const { avatarIndex } = state;
+  const { avatarIndex, conversationIndex } = state;
   const avatar = avatars[avatarIndex];
   const conversation = avatars[avatarIndex].conversations[conversationIndex];
 

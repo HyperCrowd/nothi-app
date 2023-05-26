@@ -6,10 +6,8 @@ import { GuruContext } from '../../contexts/gurus';
 import { setAvatarIndex, setAvatarSelected } from '../../actions/gurus';
 import contextBus from '../../contexts';
 
-interface Props {}
-
 export default function AvatarSelectionView() {
-  const { state, dispatch } = useContext(GuruContext)
+  const { state, dispatch } = useContext(GuruContext);
   const { avatarIndex } = state;
 
   return (
