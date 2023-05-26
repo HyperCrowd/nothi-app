@@ -24,7 +24,8 @@ export const reducer = (
     case GuruActions.SET_AVATAR_SELECTED:
       return {
         ...state,
-        breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
+        // @TODO build context queue
+        // breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
         avatarSelected: action.avatarSelected,
       };
 
@@ -34,20 +35,9 @@ export const reducer = (
     case GuruActions.SELECT_CONVERSATION:
       return {
         ...state,
-        breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
+        // @TODO build context queue
+        // breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
         conversationIndex: action.conversationIndex,
-      };
-
-    /**
-     *
-     */
-    case actions.NAVIGATE_BACK:
-      const breadcrumb = [...state.breadcrumb];
-      breadcrumb.pop();
-
-      return {
-        ...state,
-        breadcrumb,
       };
 
     default:

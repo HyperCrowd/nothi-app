@@ -4,14 +4,19 @@ import AvatarConversationsView from './views/gurus/AvatarConversations';
 import AvatarConversationView from './views/gurus/AvatarConversation';
 import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
-import { navigateBack } from './actions/gurus';
+import { navigateBack } from './actions/navigation';
 import { avatars } from './state/gurus';
 import { GurusProvider, useGuruContext } from './contexts/gurus';
+import {
+  NavigationProvider,
+  useNavigationContext,
+} from './contexts/navigation';
 
 /**
  *
  */
 export default function App() {
+  const navigationContext = useNavigationContext();
   const context = useGuruContext();
   const { state } = context;
 
@@ -19,7 +24,10 @@ export default function App() {
     return <></>;
   }
 
-  const viewState = state.breadcrumb[state.breadcrumb.length - 1];
+  const viewState =
+    navigationContext.state.breadcrumb[
+      navigationContext.state.breadcrumb.length - 1
+    ];
 
   let currentView: JSX.Element;
 
@@ -59,13 +67,15 @@ export default function App() {
 
   return (
     <div>
-      <AppBar
-        showBack={state.breadcrumb.length > 1}
-        onBackClick={() => navigateBack(context)}
-      />
-      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <div>{currentView}</div>
-      </Slide>
+      <NavigationProvider>
+        <AppBar
+          showBack={navigationContext.state.breadcrumb.length > 1}
+          onBackClick={() => navigateBack(navigationContext)}
+        />
+        <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+          <div>{currentView}</div>
+        </Slide>
+      </NavigationProvider>
     </div>
   );
 }

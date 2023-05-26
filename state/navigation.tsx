@@ -1,14 +1,14 @@
 export interface INavigation {
-  avatarIndex?: number;
-  avatarSelected?: number;
+  view?: string;
   breadcrumb?: string[];
-  conversationIndex?: number;
-  isRecording?: boolean;
 }
+
+const startingView = 'avatarSelectionView';
 
 /**
  * State
  */
 export const state: INavigation = {
-  breadcrumb: ['avatarSelectionView'],
+  view: startingView,
+  breadcrumb: [startingView],
 };

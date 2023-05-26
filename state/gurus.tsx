@@ -25,14 +25,9 @@ export interface IGuruAvatar {
 export interface IGuruCarousel {
   avatarIndex?: number;
   avatarSelected?: number;
-  breadcrumb?: string[];
   conversationIndex?: number;
   isRecording?: boolean;
 }
-
-export type SetGuruCarouselState = React.Dispatch<
-  React.SetStateAction<IGuruCarousel>
->;
 
 /**
  * State
@@ -40,7 +35,6 @@ export type SetGuruCarouselState = React.Dispatch<
 export const state: IGuruCarousel = {
   avatarIndex: 0,
   avatarSelected: -1,
-  breadcrumb: ['avatarSelectionView'],
   conversationIndex: -1,
   isRecording: false,
 };

@@ -21,6 +21,14 @@ export const reducer = (
         breadcrumb,
       };
 
+    /**
+     *
+     */
+    case NavigationActions.NAVIGATE_TO:
+      return {
+        breadcrumb: [...state.breadcrumb, action.view],
+      };
+
     default:
       return state;
   }

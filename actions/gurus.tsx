@@ -4,7 +4,6 @@ export const GuruActions: { [key: string]: string } = {
   SET_AVATAR_INDEX: 'SET_AVATAR_INDEX',
   SET_AVATAR_SELECTED: 'SET_AVATAR_SELECTED',
   SELECT_CONVERSATION: 'SELECT_CONVERSATION',
-  NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
 /**
@@ -41,14 +40,5 @@ export const selectConversation = (
   context.dispatch({
     type: GuruActions.SELECT_CONVERSATION,
     conversationIndex,
-  });
-};
-
-/**
- *
- */
-export const navigateBack = (context: GuruContext) => {
-  context.dispatch({
-    type: GuruActions.NAVIGATE_BACK,
   });
 };
