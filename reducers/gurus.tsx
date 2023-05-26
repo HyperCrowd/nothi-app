@@ -1,11 +1,5 @@
 import type { IGuruCarousel } from '../state/gurus';
-
-export const actions: { [key: string]: string } = {
-  SET_AVATAR_INDEX: 'SET_AVATAR_INDEX',
-  SET_AVATAR_SELECTED: 'SET_AVATAR_SELECTED',
-  SELECT_CONVERSATION: 'SELECT_CONVERSATION',
-  NAVIGATE_BACK: 'NAVIGATE_BACK',
-};
+import { GuruActions } from '../actions/gurus';
 
 /**
  * Reducer
@@ -18,7 +12,7 @@ export const reducer = (
     /**
      *
      */
-    case actions.SET_AVATAR_INDEX:
+    case GuruActions.SET_AVATAR_INDEX:
       return {
         ...state,
         avatarIndex: action.avatarIndex,
@@ -27,7 +21,7 @@ export const reducer = (
     /**
      *
      */
-    case actions.SET_AVATAR_SELECTED:
+    case GuruActions.SET_AVATAR_SELECTED:
       return {
         ...state,
         breadcrumb: [...state.breadcrumb, 'avatarConversationsView'],
@@ -37,7 +31,7 @@ export const reducer = (
     /**
      *
      */
-    case actions.SELECT_CONVERSATION:
+    case GuruActions.SELECT_CONVERSATION:
       return {
         ...state,
         breadcrumb: [...state.breadcrumb, 'avatarConversationView'],
@@ -48,7 +42,7 @@ export const reducer = (
      *
      */
     case actions.NAVIGATE_BACK:
-      const breadcrumb = [...action.breadcrumb];
+      const breadcrumb = [...state.breadcrumb];
       breadcrumb.pop();
 
       return {
