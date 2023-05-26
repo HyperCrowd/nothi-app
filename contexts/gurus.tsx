@@ -15,8 +15,6 @@ export const GuruContext = React.createContext<IGuruContext>({
   dispatch: () => {},
 });
 
-export const getDefaultGuruState = () => state;
-
 /**
  * Context Provider
  */

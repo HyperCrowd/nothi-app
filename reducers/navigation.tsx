@@ -13,7 +13,7 @@ export const reducer = (
     /**
      *
      */
-    case NavigationActions.NAVIGATE_BACK:
+    case NavigationActions.BACK:
       const breadcrumb = [...state.breadcrumb];
       breadcrumb.pop();
 
@@ -25,7 +25,7 @@ export const reducer = (
     /**
      *
      */
-    case NavigationActions.NAVIGATE_TO:
+    case NavigationActions.TO:
       return {
         breadcrumb: [...state.breadcrumb, action.view],
       };

@@ -8,17 +8,14 @@ import { Slide } from '@mui/material';
 import { navigateBack } from './actions/navigation';
 
 import { GurusProvider, GuruContext } from './contexts/gurus';
-import {
-  NavigationProvider,
-  useNavigationContext,
-} from './contexts/navigation';
+import { NavigationProvider, NavigationContext } from './contexts/navigation';
 
 /**
  *
  */
 export default function App() {
   // Process all actions after all renders are done
-  const navigationContext = useNavigationContext();
+  const navigationContext = useContext(NavigationContext);
   const guruContext = useContext(GuruContext);
 
   useLayoutEffect(() => {

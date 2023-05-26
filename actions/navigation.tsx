@@ -1,17 +1,15 @@
 export const NavigationActions: { [key: string]: string } = {
-  NAVIGATE_TO: 'NAVIGATE_TO',
-  NAVIGATE_BACK: 'NAVIGATE_BACK',
+  TO: 'NAVIGATE_TO',
+  BACK: 'NAVIGATE_BACK',
+  REFRESH: 'NAVIGATEREFRESH',
 };
-
-const context = 'navigation';
 
 /**
  *
  */
 export const navigateBack = () => {
   return {
-    type: NavigationActions.NAVIGATE_BACK,
-    context,
+    type: NavigationActions.BACK,
   };
 };
 
@@ -20,8 +18,7 @@ export const navigateBack = () => {
  */
 export const navigateTo = (view: string) => {
   return {
-    type: NavigationActions.NAVIGATE_TO,
-    context,
+    type: NavigationActions.TO,
     view,
   };
 };
@@ -32,6 +29,5 @@ export const navigateTo = (view: string) => {
 export const refresh = () => {
   return {
     type: NavigationActions.REFFESH,
-    context,
   };
 };

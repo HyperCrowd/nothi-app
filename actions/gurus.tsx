@@ -4,15 +4,12 @@ export const GuruActions: { [key: string]: string } = {
   SELECT_CONVERSATION: 'SELECT_CONVERSATION',
 };
 
-const context = 'gurus';
-
 /**
  *
  */
 export const setAvatarIndex = (avatarIndex: number) => {
   return {
     type: GuruActions.SET_AVATAR_INDEX,
-    context,
     avatarIndex,
   };
 };
@@ -23,7 +20,6 @@ export const setAvatarIndex = (avatarIndex: number) => {
 export const setAvatarSelected = (avatarSelected: number) => {
   return {
     type: GuruActions.SET_AVATAR_SELECTED,
-    context,
     avatarSelected,
   };
 };
@@ -34,7 +30,6 @@ export const setAvatarSelected = (avatarSelected: number) => {
 export const selectConversation = (conversationIndex: number) => {
   return {
     type: GuruActions.SELECT_CONVERSATION,
-    context,
     conversationIndex,
   };
 };
