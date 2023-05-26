@@ -1,3 +1,6 @@
+import type { Action } from '../contexts/index';
+import type { IGuruCarousel } from '../state/gurus';
+
 export const GuruActions: { [key: string]: string } = {
   SET_AVATAR_INDEX: 'SET_AVATAR_INDEX',
   SET_AVATAR_SELECTED: 'SET_AVATAR_SELECTED',
@@ -7,7 +10,7 @@ export const GuruActions: { [key: string]: string } = {
 /**
  *
  */
-export const setAvatarIndex = (avatarIndex: number) => {
+export const setAvatarIndex = (avatarIndex: number): Action & IGuruCarousel => {
   return {
     type: GuruActions.SET_AVATAR_INDEX,
     avatarIndex,
@@ -17,7 +20,9 @@ export const setAvatarIndex = (avatarIndex: number) => {
 /**
  *
  */
-export const setAvatarSelected = (avatarSelected: number) => {
+export const setAvatarSelected = (
+  avatarSelected: number
+): Action & IGuruCarousel => {
   return {
     type: GuruActions.SET_AVATAR_SELECTED,
     avatarSelected,
@@ -27,7 +32,9 @@ export const setAvatarSelected = (avatarSelected: number) => {
 /**
  *
  */
-export const selectConversation = (conversationIndex: number) => {
+export const selectConversation = (
+  conversationIndex: number
+): Action & IGuruCarousel => {
   return {
     type: GuruActions.SELECT_CONVERSATION,
     conversationIndex,

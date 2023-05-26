@@ -4,13 +4,13 @@ import type { Action } from '.';
 import { reducer } from '../reducers/navigation';
 import { state } from '../state/navigation';
 
-export interface NavigationContext {
+export interface INavigationContext {
   state: INavigation;
   dispatch: Dispatch<Action & INavigation>;
 }
 
 const DispatchContext = React.createContext(null);
-const Context = React.createContext<NavigationContext>({
+export const NavigationContext = React.createContext<INavigationContext>({
   state,
   dispatch: () => {},
 });
@@ -22,7 +22,7 @@ export function NavigationProvider({ children }) {
   const [providerState, dispatch] = React.useReducer(reducer, state);
 
   return (
-    <Context.Provider
+    <NavigationContext.Provider
       value={{
         state: providerState,
         dispatch,
@@ -31,6 +31,6 @@ export function NavigationProvider({ children }) {
       <DispatchContext.Provider value={dispatch}>
         {children}
       </DispatchContext.Provider>
-    </Context.Provider>
+    </NavigationContext.Provider>
   );
 }

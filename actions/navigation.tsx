@@ -1,3 +1,6 @@
+import type { Action } from '../contexts/index';
+import type { INavigation } from '../state/navigation';
+
 export const NavigationActions: { [key: string]: string } = {
   TO: 'NAVIGATE_TO',
   BACK: 'NAVIGATE_BACK',
@@ -7,7 +10,7 @@ export const NavigationActions: { [key: string]: string } = {
 /**
  *
  */
-export const navigateBack = () => {
+export const navigateBack = (): Action & INavigation => {
   return {
     type: NavigationActions.BACK,
   };
@@ -16,7 +19,7 @@ export const navigateBack = () => {
 /**
  *
  */
-export const navigateTo = (view: string) => {
+export const navigateTo = (view: string): Action & INavigation => {
   return {
     type: NavigationActions.TO,
     view,
@@ -26,7 +29,7 @@ export const navigateTo = (view: string) => {
 /**
  *
  */
-export const refresh = () => {
+export const refresh = (): Action & INavigation => {
   return {
     type: NavigationActions.REFFESH,
   };

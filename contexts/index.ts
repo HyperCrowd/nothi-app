@@ -1,7 +1,7 @@
 import type { Dispatch } from 'react';
+
 export interface Action {
   type: string;
-  context: string;
 }
 
 type State = Record<string, unknown>;
