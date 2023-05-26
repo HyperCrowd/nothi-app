@@ -27,12 +27,8 @@ export default function App() {
     contextBus.run();
   });
 
-  if (contextBus.loaded == false) {
-    // @TODO: Is there a smarter way to do this?
-    contextBus.add('navigation', navigationContext);
-    contextBus.add('gurus', guruContext);
-    contextBus.loaded = true;
-  }
+  contextBus.refresh('navigation', navigationContext);
+  contextBus.refresh('gurus', guruContext);
 
   const viewState = breadcrumb[breadcrumb.length - 1];
 

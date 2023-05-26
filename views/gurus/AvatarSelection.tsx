@@ -4,6 +4,7 @@ import DreamButton from '../../components/DreamButton';
 import { avatars } from '../../state/gurus';
 import { useGuruContext } from '../../contexts/gurus';
 import { setAvatarIndex, setAvatarSelected } from '../../actions/gurus';
+import contextBus from '../../contexts';
 
 interface Props {
   avatarIndex: number;
@@ -17,10 +18,10 @@ export default function AvatarSelectionView({ avatarIndex }: Props) {
       <GuruCarousel
         avatars={avatars}
         onChange={(index: number) => {
-          setAvatarIndex(context, index);
+          contextBus.schedule(setAvatarIndex, index);
         }}
         onAvatarClick={(index: number) => {
-          setAvatarSelected(context, index);
+          contextBus.schedule(setAvatarSelected, index);
         }}
         currentAvatarIndex={avatarIndex}
       />

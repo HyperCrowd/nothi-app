@@ -17,7 +17,7 @@ class ContextBus {
   /**
    *
    */
-  add(name: string, context: Context) {
+  refresh(name: string, context: Context) {
     this.contexts[name] = context;
   }
 
