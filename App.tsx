@@ -6,7 +6,7 @@ import AvatarConversationView from './views/gurus/AvatarConversation';
 import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
 import { navigateBack } from './actions/navigation';
-import { GurusProvider, GuruContext } from './contexts/gurus';
+import { GurusProvider } from './contexts/gurus';
 import { NavigationProvider, NavigationContext } from './contexts/navigation';
 
 /**
@@ -17,6 +17,7 @@ export default function App() {
   const navigationContext = useContext(NavigationContext);
 
   useLayoutEffect(() => {
+    console.log('rerender');
     contextBus.run();
   });
 
