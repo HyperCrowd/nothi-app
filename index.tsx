@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Context, State } from './state/App';
 
 //import '@fontsource/roboto/300.css';
 //import '@fontsource/roboto/400.css';
@@ -27,10 +26,8 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <Context.Provider value={State}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </Context.Provider>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </StrictMode>
 );
