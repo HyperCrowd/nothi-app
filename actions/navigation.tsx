@@ -1,24 +1,27 @@
-import type { NavigationContext } from '../contexts/navigation';
-
 export const NavigationActions: { [key: string]: string } = {
   NAVIGATE_TO: 'NAVIGATE_TO',
   NAVIGATE_BACK: 'NAVIGATE_BACK',
 };
 
+const context = 'navigation';
+
 /**
  *
  */
-export const navigateBack = (context: NavigationContext) => {
-  context.dispatch({
+export const navigateBack = () => {
+  return {
     type: NavigationActions.NAVIGATE_BACK,
-  });
+    context,
+  };
 };
 
 /**
  *
  */
-export const navigateTo = (context: NavigationContext) => {
-  context.dispatch({
+export const navigateTo = (view: string) => {
+  return {
     type: NavigationActions.NAVIGATE_TO,
-  });
+    context,
+    view,
+  };
 };

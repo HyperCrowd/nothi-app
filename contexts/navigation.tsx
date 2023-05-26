@@ -5,8 +5,8 @@ import { reducer } from '../reducers/navigation';
 import { state } from '../state/navigation';
 
 export interface NavigationContext {
-  state: INavigation;
-  dispatch: Dispatch<Action & INavigation>;
+  state: INavigation & Record<string, unknown>;
+  dispatch: Dispatch<Action & INavigation & Record<string, unknown>>;
 }
 
 const DispatchContext = React.createContext(null);

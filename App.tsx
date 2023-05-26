@@ -18,17 +18,18 @@ import {
  */
 export default function App() {
   // Process all actions after all renders are done
+  const navigationContext = useNavigationContext();
+  const guruContext = useGuruContext();
+  const { state } = guruContext;
+
   useLayoutEffect(() => {
     contextBus.run();
   });
 
-  const navigationContext = useNavigationContext();
-  const context = useGuruContext();
-  const { state } = context;
-
   if (contextBus.loaded == false) {
+    // @TODO: Is there a smarter way to do this?
     contextBus.add('navigation', navigationContext);
-    contextBus.add('gurus', context);
+    contextBus.add('gurus', guruContext);
     contextBus.loaded = true;
   }
 
@@ -82,7 +83,7 @@ export default function App() {
       <NavigationProvider>
         <AppBar
           showBack={navigationContext.state.breadcrumb.length > 1}
-          onBackClick={() => navigateBack(navigationContext)}
+          onBackClick={() => contextBus.schedule(navigateBack)}
         />
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>
           <div>{currentView}</div>

@@ -1,5 +1,6 @@
 export interface Action {
   type: string;
+  context: string;
 }
 
 type State = Record<string, unknown>;
@@ -16,25 +17,16 @@ class ContextBus {
   /**
    *
    */
-  addContext(name: string, context: Context) {
+  add(name: string, context: Context) {
     this.contexts[name] = context;
   }
 
   /**
    *
    */
-  schedule(
-    name: string,
-    action: (context: Context, ...args: any[]) => Action & State,
-    ...args: any[]
-  ) {
-    const context = this.contexts[name];
-
-    if (context === undefined) {
-      throw new RangeError(`${name} is not a valid context`);
-    }
-
-    const details = action(context, ...args);
+  schedule(action: (...args: any[]) => Action & State, ...args: any[]) {
+    const details = action(...args);
+    const context = this.contexts[details.context];
     this.queue.push([context.dispatch, details]);
   }
 
