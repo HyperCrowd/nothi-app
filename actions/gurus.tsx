@@ -10,7 +10,6 @@ export const GuruActions: { [key: string]: string } = {
  *
  */
 export const setAvatarIndex = (context: GuruContext, avatarIndex: number) => {
-  console.log(context);
   context.dispatch({
     type: GuruActions.SET_AVATAR_INDEX,
     avatarIndex,

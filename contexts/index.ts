@@ -2,27 +2,21 @@ export interface Action {
   type: string;
 }
 
-export interface Context<State extends Object> {
+type State = Record<string, unknown>;
+
+interface Context {
   state: State;
-  dispatch: {
-    type: string;
-  } & State;
+  dispatch: (value: Action & State) => void;
 }
-
-export default class ContextBus {
-  contexts: {
-    [key: string]: StateType<Object>;
-  } = {};
-
-  constructor() {}
+class ContextBus {
+  contexts: Record<string, Context> = {};
+  queue: [Context['dispatch'], Action & State][] = [];
+  loaded: boolean = false;
 
   /**
    *
    */
-  addContext<StateType extends Object>(
-    name: string,
-    context: Context<StateType>
-  ) {
+  addContext(name: string, context: Context) {
     this.contexts[name] = context;
   }
 
@@ -31,10 +25,8 @@ export default class ContextBus {
    */
   schedule(
     name: string,
-    action: (
-      context: Context<typeof this.contexts[name]>,
-      ...args: any[]
-    ) => void
+    action: (context: Context, ...args: any[]) => Action & State,
+    ...args: any[]
   ) {
     const context = this.contexts[name];
 
@@ -42,6 +34,24 @@ export default class ContextBus {
       throw new RangeError(`${name} is not a valid context`);
     }
 
-    action(context, ...args);
+    const details = action(context, ...args);
+    this.queue.push([context.dispatch, details]);
+  }
+
+  /**
+   *
+   */
+  run() {
+    if (this.queue.length === 0) {
+      return;
+    }
+
+    const [dispatch, details] = this.queue.pop();
+
+    dispatch(details);
   }
 }
+
+const contextBus = new ContextBus();
+
+export default contextBus;

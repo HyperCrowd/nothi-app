@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import contextBus from './contexts';
 import AvatarSelectionView from './views/gurus/AvatarSelection';
 import AvatarConversationsView from './views/gurus/AvatarConversations';
 import AvatarConversationView from './views/gurus/AvatarConversation';
@@ -16,9 +17,20 @@ import {
  *
  */
 export default function App() {
+  // Process all actions after all renders are done
+  useLayoutEffect(() => {
+    contextBus.run();
+  });
+
   const navigationContext = useNavigationContext();
   const context = useGuruContext();
   const { state } = context;
+
+  if (contextBus.loaded == false) {
+    contextBus.add('navigation', navigationContext);
+    contextBus.add('gurus', context);
+    contextBus.loaded = true;
+  }
 
   if (state === undefined) {
     return <></>;
