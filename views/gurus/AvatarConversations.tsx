@@ -1,8 +1,5 @@
 import * as React from 'react';
 import type { IConversation, IGuruAvatar } from '../../types';
-import type { IGuruCarousel } from '../../state/gurus';
-import type { Action } from '../../contexts';
-import { selectConversation } from '../../actions/gurus';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -42,7 +39,7 @@ function getAvatar(from: string, avatar: IGuruAvatar) {
   );
 }
 
-function AvatarConversation({
+export default function AvatarConversationView({
   conversation,
   avatar,
 }: Props) {
@@ -91,14 +88,4 @@ function AvatarConversation({
       </Stack>
     </Box>
   );
-}
-
-export default const AvatarConversationView () => {
-  return (
-    <AvatarConversations
-      avatarIndex={state.avatarIndex}
-      avatar={avatars[state.avatarIndex]}
-      onConversationClick={selectConversation}
-    />
-  )
 }
