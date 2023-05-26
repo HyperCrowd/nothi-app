@@ -1,17 +1,10 @@
 import React from 'react';
-import AvatarSelectionView from './views/AvatarSelectionView';
-import AvatarConversationsView from './views/AvatarConversationsView';
-import AvatarConversationView from './views/AvatarConversationView';
-import { Context } from './state/App';
+import AvatarSelectionView from './views/gurus/AvatarSelection';
+import AvatarConversationsView from './views/gurus/AvatarConversations';
+import AvatarConversationView from './views/gurus/AvatarConversation';
 import AppBar from './components/AppBar';
 import { Slide } from '@mui/material';
-import {
-  State,
-  setAvatarIndex,
-  setAvatarSelected,
-  selectConversation,
-  navigateBack,
-} from './state/App';
+import { navigateBack } from './actions/gurus';
 import { avatars } from './state/gurus';
 import { GurusProvider, useGuruContext } from './contexts/gurus';
 /**
@@ -32,15 +25,7 @@ export default function App() {
     case 'avatarSelectionView':
       currentView = (
         <GurusProvider>
-          <AvatarSelectionView
-            setAvatarIndex={(index: number) =>
-              setAvatarIndex(state, dispatch, index)
-            }
-            setAvatarSelected={(index: number) =>
-              setAvatarSelected(state, dispatch, index)
-            }
-            avatarIndex={state.avatarIndex}
-          />
+          <AvatarSelectionView avatarIndex={state.avatarIndex} />
         </GurusProvider>
       );
       break;
@@ -51,9 +36,6 @@ export default function App() {
           <AvatarConversationsView
             avatarIndex={state.avatarIndex}
             avatar={avatars[state.avatarIndex]}
-            onConversationClick={(index: number) =>
-              selectConversation(state, dispatch, index)
-            }
           />
         </GurusProvider>
       );
@@ -77,7 +59,7 @@ export default function App() {
     <div>
       <AppBar
         showBack={state.breadcrumb.length > 1}
-        onBackClick={() => navigateBack(state, dispatch)}
+        onBackClick={() => navigateBack()}
       />
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <div>{currentView}</div>
