@@ -4,7 +4,7 @@ import type { INavigation } from '../state/navigation';
 export const NavigationActions: { [key: string]: string } = {
   TO: 'NAVIGATE_TO',
   BACK: 'NAVIGATE_BACK',
-  REFRESH: 'NAVIGATEREFRESH',
+  REFRESH: 'NAVIGATE_REFRESH',
 };
 
 /**

@@ -1,4 +1,4 @@
-import React, { useContext, Dispatch } from 'react';
+import React, { Dispatch } from 'react';
 import type { INavigation } from '../state/navigation';
 import type { Action } from '.';
 import { reducer } from '../reducers/navigation';

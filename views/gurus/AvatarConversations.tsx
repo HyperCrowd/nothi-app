@@ -6,8 +6,8 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import GuruAvatar from '../../components/GuruAvatar';
-import { useGuruContext } from '../../contexts/gurus';
-import { avatars } from '../state/gurus';
+import { GuruContext } from '../../contexts/gurus';
+import { avatars } from '../../state/gurus';
 
 interface Props {
   avatarIndex: number;
@@ -29,11 +29,11 @@ const Item = styled(Paper)(({ theme }) => ({
  *             avatarIndex={avatarIndex}
             avatar={avatars[avatarIndex]}
  */
-export default function AvatarConversationsView({
-  avatarIndex,
-  avatar,
-}: Props) {
+export default function AvatarConversationsView() {
   const context = useGuruContext();
+  const { state, dispatch } = useContext(GuruContext);
+  const { avatarIndex } = state;
+  const avatar = avatars[avatarIndex];
 
   return (
     <Box sx={{ width: '100%' }}>
