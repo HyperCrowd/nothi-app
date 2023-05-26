@@ -9,8 +9,11 @@ interface GuruContext {
   dispatch: Dispatch<Action & IGuruCarousel>;
 }
 
-const Context = React.createContext<GuruContext | undefined>(undefined);
 const DispatchContext = React.createContext(null);
+const Context = React.createContext<GuruContext | undefined>({
+  state,
+  dispatch: { type: '' },
+});
 
 /**
  *
